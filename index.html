@@ -45,7 +45,15 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
+/* Compactar tarjetas y botones */
+    .product-card {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    .product-card button {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+    }
     /* Fondo unificado en #A01F0B */
     body {
       background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
@@ -205,14 +213,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 3 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="P. Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="P. Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$5.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -221,14 +229,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 4 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Choripán Clásico</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$4.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -237,14 +245,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 5 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Choripán Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -253,14 +261,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 6 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="P. Polaco">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="P. Polaco">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Polaco</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -269,14 +277,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 7 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="P. Polaco Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="P. Polaco Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Polaco Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -285,14 +293,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 8 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Ternerito</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -301,14 +309,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 9 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Ternerito Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-9" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -317,14 +325,14 @@ background-attachment: fixed;
         </div>
 
         <!-- Item 10 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="P. Tri-Mixto">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="P. Tri-Mixto">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Tri-Mixto</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-perro-10" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -344,14 +352,14 @@ background-attachment: fixed;
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="H. Clásica">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="H. Clásica">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -359,14 +367,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="H. Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="H. Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -374,14 +382,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="H. Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="H. Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -389,14 +397,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="H. Extra">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="H. Extra">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Extra</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -404,14 +412,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="H. Caolis Combinada">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="H. Caolis Combinada">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Caolis Combinada</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -419,14 +427,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="H. Triple Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="H. Triple Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Triple Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$10.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -434,14 +442,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="H. Caolis Chuletón">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="H. Caolis Chuletón">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Caolis Chuletón</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -449,14 +457,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="H. Cheese Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="H. Cheese Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Cheese Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$7.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main-border space-x-2 shadow-sm">
               <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-burg-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -476,14 +484,14 @@ background-attachment: fixed;
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pep. Tradicional">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pep. Tradicional">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Pepito Tradicional</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto con vegetales y queso fundido.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('pep-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-pep-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('pep-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -491,14 +499,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis mixto jamon queso tocineta" data-price="9.5" data-title="Pep. Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis mixto jamon queso tocineta" data-price="9.5" data-title="Pep. Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Pepito Súper Caolis</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito/Pollo + Jamón, Queso rallado y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$9.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('pep-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-pep-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('pep-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -515,14 +523,14 @@ background-attachment: fixed;
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="papas fritas racion" data-price="3.0" data-title="Ración de Papas Fritas">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="papas fritas racion" data-price="3.0" data-title="Ración de Papas Fritas">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Ración de Papas Fritas</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Papas crujientes recién hechas.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$3.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('adic-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-adic-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('adic-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
@@ -530,14 +538,14 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra de queso tocineta jamon" data-price="1.0" data-title="Extra Queso / Tocineta / Jamón">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="extra de queso tocineta jamon" data-price="1.0" data-title="Extra Queso / Tocineta / Jamón">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Extra Queso / Tocineta / Jamón</h3>
             <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Añade sabor extra a cualquiera de tus platos.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$1.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
               <button onclick="updateQty('adic-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
               <span id="qty-adic-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
               <button onclick="updateQty('adic-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
