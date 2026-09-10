@@ -45,14 +45,34 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-/* Compactar tarjetas y botones */
+/* Estructura compacta para tarjetas */
     .product-card {
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
+      padding-top: 0.4rem !important;
+      padding-bottom: 0.4rem !important;
     }
+
+    /* Nombre y Precio en la misma línea superior */
+    .product-card > div:first-child {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .product-card h3 {
+      display: inline-block;
+    }
+
+    /* Botones - / + más angostos */
     .product-card button {
       width: 1.25rem !important;
       height: 1.25rem !important;
+      font-size: 10px !important;
+    }
+
+    /* Reducir espacio vertical del contenedor derecho */
+    .product-card .space-y-2 {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      gap: 0.25rem !important;
     }
     /* Fondo unificado en #A01F0B */
     body {
