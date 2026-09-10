@@ -45,12 +45,20 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-/* Reducir alto de tarjeta y botones */
+/* Ajuste de altura compacta */
     div[class*="product-card"] {
-      padding-top: 0.25rem !important;
-      padding-bottom: 0.25rem !important;
+      padding-top: 0.35rem !important;
+      padding-bottom: 0.35rem !important;
+      align-items: stretch !important;
     }
 
+    /* Reducir espacio entre Nombre y Descripción */
+    div[class*="product-card"] h3 {
+      line-height: 1.1 !important;
+      margin-bottom: 0.15rem !important;
+    }
+
+    /* Reducir botones - / + */
     div[class*="product-card"] button {
       width: 1.25rem !important;
       height: 1.25rem !important;
@@ -60,9 +68,10 @@
       font-size: 11px !important;
     }
 
+    /* Ajustar el bloque derecho (Precio arriba, Botones abajo) */
     div[class*="product-card"] .space-y-2 > :not([hidden]) ~ :not([hidden]) {
-      margin-top: 0.15rem !important;
-      margin-bottom: 0.15rem !important;
+      margin-top: 0.1rem !important;
+      margin-bottom: 0 !important;
     }
     /* Fondo unificado en #A01F0B */
     body {
