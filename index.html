@@ -45,34 +45,24 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-/* Estructura compacta para tarjetas */
-    .product-card {
-      padding-top: 0.4rem !important;
-      padding-bottom: 0.4rem !important;
+/* Reducir alto de tarjeta y botones */
+    div[class*="product-card"] {
+      padding-top: 0.25rem !important;
+      padding-bottom: 0.25rem !important;
     }
 
-    /* Nombre y Precio en la misma línea superior */
-    .product-card > div:first-child {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .product-card h3 {
-      display: inline-block;
-    }
-
-    /* Botones - / + más angostos */
-    .product-card button {
+    div[class*="product-card"] button {
       width: 1.25rem !important;
       height: 1.25rem !important;
-      font-size: 10px !important;
+      min-width: 1.25rem !important;
+      min-height: 1.25rem !important;
+      padding: 0 !important;
+      font-size: 11px !important;
     }
 
-    /* Reducir espacio vertical del contenedor derecho */
-    .product-card .space-y-2 {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-      gap: 0.25rem !important;
+    div[class*="product-card"] .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 0.15rem !important;
+      margin-bottom: 0.15rem !important;
     }
     /* Fondo unificado en #A01F0B */
     body {
