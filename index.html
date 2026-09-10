@@ -1,763 +1,480 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Caoli's Bur's - Menú Digital Interactivo</title>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              main: '#EAA814',      /* Mostaza Ajustado */
-              dark: '#c78e0f',      /* Mostaza Oscuro */
-              accent: '#b91c1c',    /* Rojo */
-              bg: '#f5ede2',        /* Fondo Claro Warm */
-              card: '#e8dccb',      /* Tarjeta Clara */
-              border: '#dfcfb9',    /* Borde Claro */
-              text: '#4a2c11'       /* Texto Marrón Oscuro */
-            }
-          },
-          fontFamily: {
-            sans: ['Poppins', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Caoli's Bur's - Menú Digital Interactivo</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              main: '#EAA814',      /* Mostaza Ajustado */
+              dark: '#c78e0f',      /* Mostaza Oscuro */
+              accent: '#b91c1c',    /* Rojo */
+              bg: '#f5ede2',        /* Fondo Claro Warm */
+              card: '#e8dccb',      /* Tarjeta Clara */
+              border: '#dfcfb9',    /* Borde Claro */
+              text: '#4a2c11'       /* Texto Marrón Oscuro */
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 
-  <style>
-    /* Custom Scrollbar Hide */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+  <style>
+    /* Custom Scrollbar Hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
-    /* Fondo unificado en gradiente rojo */
-    body {
-      background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
-      background-attachment: fixed;
-      font-family: 'Poppins', sans-serif;
-      color: #4a2c11;
-      -webkit-tap-highlight-color: transparent;
-    }
+    /* Fondo unificado en #A01F0B */
+    body {
+      background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
+background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      color: #4a2c11;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    /* Brush title technique */
-    .brush-title {
-      position: relative;
-      display: inline-block;
-      padding: 4px 18px;
-      color: #ffffff;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .brush-title::before {
-      content: "";
-      position: absolute;
-      inset: -2px -8px;
-      background: linear-gradient(100deg, #EAA814, #c78e0f);
-      transform: rotate(-1.5deg) skewX(-6deg);
-      border-radius: 6px 14px 6px 14px;
-      z-index: -1;
-      opacity: 0.98;
-      box-shadow: 0 4px 12px rgba(234, 168, 20, 0.25);
-    }
+    /* Brush title technique */
+    .brush-title {
+      position: relative;
+      display: inline-block;
+      padding: 4px 18px;
+      color: #ffffff;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .brush-title::before {
+      content: "";
+      position: absolute;
+      inset: -2px -8px;
+      background: linear-gradient(100deg, #EAA814, #c78e0f);
+      transform: rotate(-1.5deg) skewX(-6deg);
+      border-radius: 6px 14px 6px 14px;
+      z-index: -1;
+      opacity: 0.98;
+      box-shadow: 0 4px 12px rgba(234, 168, 20, 0.25);
+    }
 
-    /* Glow pulse CTA */
-    @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 4px 18px rgba(185, 28, 28, 0.4); }
-      50% { box-shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
-    }
-    .cta-glow {
-      animation: glowPulse 2.2s ease-in-out infinite;
-    }
+    /* Glow pulse CTA */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 4px 18px rgba(185, 28, 28, 0.4); }
+      50% { box-shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
+    }
+    .cta-glow {
+      animation: glowPulse 2.2s ease-in-out infinite;
+    }
 
-    /* Smooth Scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body class="pb-32 bg-[#A01F0B]">
 
-  <!-- HEADER FIJO -->
-  <header class="sticky top-0 z-30 bg-[#A01F0B] border-b border-brand-border/20 shadow-md">
-    <div class="max-w-md mx-auto px-4 pt-4 pb-3">
-      <!-- Branding & Title -->
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-white p-0.5 overflow-hidden shadow-md flex-shrink-0">
-            <div class="w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex flex-col items-center justify-center text-center p-1">
-              <i class="fa-solid fa-cow text-amber-200 text-xs"></i>
-              <span class="text-[7px] font-black leading-none text-white tracking-tighter">CAOLI'S</span>
-            </div>
-          </div>
-          <div>
-            <h1 class="text-xl font-black tracking-wide text-white uppercase leading-tight drop-shadow-sm">
-              CAOLI'S BUR'S
-            </h1>
-            <p class="text-xs font-semibold text-amber-400 tracking-wider uppercase">SINCE 1998 • SABOR TRADICIONAL</p>
-          </div>
-        </div>
-      </div>
+  <!-- HEADER FIJO (Integrado en #A01F0B) -->
+  <header class="sticky top-0 z-30 bg-[#A01F0B] border-b border-brand-border/20 shadow-md">
+    <div class="max-w-md mx-auto px-4 pt-4 pb-3">
+      <!-- Branding & Title -->
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-white p-0.5 overflow-hidden shadow-md flex-shrink-0">
+            <div class="w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex flex-col items-center justify-center text-center p-1">
+              <i class="fa-solid fa-cow text-amber-200 text-xs"></i>
+              <span class="text-[7px] font-black leading-none text-white tracking-tighter">CAOLI'S</span>
+            </div>
+          </div>
+          <div>
+            <h1 class="text-xl font-black tracking-wide text-white uppercase leading-tight drop-shadow-sm">
+              CAOLI'S BUR'S
+            </h1>
+            <p class="text-xs font-semibold text-amber-400 tracking-wider uppercase">SINCE 1998 • SABOR TRADICIONAL</p>
+          </div>
+        </div>
+      </div>
 
-      <!-- Info Operativa -->
-      <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-amber-100 font-medium bg-black/25 backdrop-blur-sm p-2 rounded-xl border border-white/10 shadow-sm">
-        <div class="flex items-center space-x-1.5 justify-center">
-          <i class="fa-solid fa-motorcycle text-brand-main text-xs"></i>
-          <span>Delivery & Pick-up</span>
-        </div>
-        <div class="flex items-center space-x-1.5 justify-center">
-          <i class="fa-solid fa-location-dot text-brand-main text-xs"></i>
-          <span>@caolisburs</span>
-        </div>
-      </div>
-      
-      <!-- Buscador -->
-      <div class="relative">
-        <input 
-          type="text" 
-          id="searchInput"
-          oninput="filterProducts()"
-          placeholder="¿Qué se te antoja hoy? Buscar..." 
-          class="w-full bg-white border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-brand-text placeholder-gray-400 focus:outline-none focus:border-brand-main transition-all shadow-sm"
-        >
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 text-xs"></i>
-      </div>
-    </div>
+      <!-- Info Operativa -->
+      <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-amber-100 font-medium bg-black/25 backdrop-blur-sm p-2 rounded-xl border border-white/10 shadow-sm">
+        <div class="flex items-center space-x-1.5 justify-center">
+          <i class="fa-solid fa-motorcycle text-brand-main text-xs"></i>
+          <span>Delivery & Pick-up</span>
+        </div>
+        <div class="flex items-center space-x-1.5 justify-center">
+          <i class="fa-solid fa-location-dot text-brand-main text-xs"></i>
+          <span>@caolisburs</span>
+        </div>
+      </div>
+      
+      <!-- Buscador -->
+      <div class="relative">
+        <input 
+          type="text" 
+          id="searchInput"
+          oninput="filterProducts()"
+          placeholder="¿Qué se te antoja hoy? Buscar..." 
+          class="w-full bg-white border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-brand-text placeholder-gray-400 focus:outline-none focus:border-brand-main transition-all shadow-sm"
+        >
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 text-xs"></i>
+      </div>
+    </div>
 
-    <!-- Navegación de Categorías Horizontal -->
-    <div class="border-t border-brand-border/20 bg-[#A01F0B]/95 backdrop-blur-md">
-      <div class="max-w-md mx-auto px-3 py-2 flex space-x-2 overflow-x-auto no-scrollbar" id="categoryNav">
-        <button onclick="scrollToCategory('perros', this)" class="cat-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-main text-white shadow-md shadow-brand-main/20">
-          🌭 Perros Calientes
-        </button>
-        <button onclick="scrollToCategory('hamburguesas', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
-          🍔 Hamburguesas
-        </button>
-        <button onclick="scrollToCategory('pepitos', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
-          🥖 Pepitos
-        </button>
-        <button onclick="scrollToCategory('adicionales', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
-          🍟 Adicionales
-        </button>
-      </div>
-    </div>
-  </header>
+    <!-- Navegación de Categorías Horizontal -->
+    <div class="border-t border-brand-border/20 bg-[#A01F0B]/95 backdrop-blur-md">
+      <div class="max-w-md mx-auto px-3 py-2 flex space-x-2 overflow-x-auto no-scrollbar" id="categoryNav">
+        <button onclick="scrollToCategory('perros', this)" class="cat-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-main text-white shadow-md shadow-brand-main/20">
+          🌭 Perros Calientes
+        </button>
+        <button onclick="scrollToCategory('hamburguesas', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🍔 Hamburguesas
+        </button>
+        <button onclick="scrollToCategory('pepitos', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🥖 Pepitos
+        </button>
+        <button onclick="scrollToCategory('adicionales', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🍟 Adicionales
+        </button>
+      </div>
+    </div>
+  </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="max-w-md mx-auto px-4 pt-6 space-y-8">
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-md mx-auto px-4 pt-6 space-y-8">
 
-    <!-- CATEGORÍA 1: PERROS CALIENTES -->
-    <section id="perros" class="category-section scroll-mt-36">
-      <div class="mb-3">
-        <h2 class="brush-title text-sm">Perros Calientes</h2>
-        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
-        </p>
-      </div>
+    <!-- CATEGORÍA 1: PERROS CALIENTES -->
+    <section id="perros" class="category-section scroll-mt-36">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Perros Calientes</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
 
-      <div class="space-y-2.5" id="list-perros">
-        <!-- Item 1 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica perrito caliente salchicha" data-price="3.5" data-title="Clásica (Perro)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha tradicional, vegetales y salsas.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$3.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+      <div class="space-y-2.5" id="list-perros">
+        <!-- Item 1 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica perrito caliente salchicha" data-price="3.5" data-title="Clásica (Perro)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha tradicional, vegetales y salsas.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$3.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 2 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis salchicha jamon queso tocineta" data-price="4.0" data-title="Caolis (Perro)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha + 1 adicional a elegir (Jamón, Queso o Tocineta).</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$4.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 2 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis salchicha jamon queso tocineta" data-price="4.0" data-title="Caolis (Perro)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha + 1 adicional a elegir (Jamón, Queso o Tocineta).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$4.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 3 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="Súper Caolis (Perro)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$5.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 3 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="Súper Caolis (Perro)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 4 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Choripán Clásico</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$4.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 4 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Choripán Clásico</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$4.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 5 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Choripán Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 5 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Choripán Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 6 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="Polaco">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Polaco</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 6 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="Polaco">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Polaco</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 7 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="Polaco Súper Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Polaco Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 7 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="Polaco Súper Caolis">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Polaco Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 8 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Ternerito</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 8 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Ternerito</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 9 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Ternerito Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-9" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <!-- Item 9 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Ternerito Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-9" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <!-- Item 10 -->
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="Tri-Mixto (Perro)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Tri-Mixto</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-10" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Item 10 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="Tri-Mixto (Perro)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Tri-Mixto</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-10" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- CATEGORÍA 2: HAMBURGUESAS -->
-    <section id="hamburguesas" class="category-section scroll-mt-36">
-      <div class="mb-3">
-        <h2 class="brush-title text-sm">Hamburguesas</h2>
-        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
-        </p>
-      </div>
+    <!-- CATEGORÍA 2: HAMBURGUESAS -->
+    <section id="hamburguesas" class="category-section scroll-mt-36">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Hamburguesas</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
 
-      <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="Clásica (Burger)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+      <div class="space-y-2.5">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="Clásica (Burger)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="Caolis (Burger)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="Caolis (Burger)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="Súper Caolis (Burger)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="Súper Caolis (Burger)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="Extra (Burger)">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Extra</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="Extra (Burger)">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Extra</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="Caolis Combinada">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Caolis Combinada</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="Caolis Combinada">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis Combinada</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="Triple Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Triple Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$10.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="Triple Caolis">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Triple Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$10.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="Caolis Chuletón">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Caolis Chuletón</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="Caolis Chuletón">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis Chuletón</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="Cheese Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Cheese Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$7.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="Cheese Caolis">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Cheese Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- CATEGORÍA 3: PEPITOS -->
-    <section id="pepitos" class="category-section scroll-mt-36">
-      <div class="mb-3">
-        <h2 class="brush-title text-sm">Pepitos</h2>
-        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
-        </p>
-      </div>
+    <!-- CATEGORÍA 3: PEPITOS -->
+    <section id="pepitos" class="category-section scroll-mt-36">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Pepitos</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
 
-      <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito tradicional carne pollo lomito mixtos" data-price="8.0" data-title="Pepito Tradicional">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Pepito Tradicional</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto preparado al momento.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('pep-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-pep-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('pep-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis queso jamon tocineta" data-price="9.5" data-title="Pepito Súper Caolis">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Pepito Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo + Queso, Jamón y Tocineta.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$9.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('pep-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-pep-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('pep-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CATEGORÍA 4: ADICIONALES -->
-    <section id="adicionales" class="category-section scroll-mt-36">
-      <div class="mb-3">
-        <h2 class="brush-title text-sm">Adicionales</h2>
-      </div>
-
-      <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="papas fritas porcion" data-price="2.5" data-title="Papas Fritas">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Porción de Papas Fritas</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Crocantes y recién hechas.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$2.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('adc-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adc-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('adc-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="refresco bebida soda" data-price="1.5" data-title="Refresco">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Refresco 355ml</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lata bien fría.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$1.5</span>
-            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('adc-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adc-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('adc-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- BARRA DE CARRITO FLOTANTE -->
-  <div id="cartBar" class="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none transform translate-y-full transition-transform duration-300">
-    <div class="max-w-md mx-auto pointer-events-auto">
-      <button onclick="openModal()" class="w-full bg-brand-accent text-white font-bold py-3.5 px-5 rounded-2xl shadow-xl flex items-center justify-between border border-red-500/30 cta-glow">
-        <div class="flex items-center space-x-3">
-          <span id="cartCount" class="bg-white text-brand-accent font-black text-xs w-6 h-6 rounded-full flex items-center justify-center shadow-inner">0</span>
-          <span class="text-sm uppercase tracking-wide">Ver mi pedido</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <span id="cartTotal" class="text-base font-black">$0.00</span>
-          <i class="fa-solid fa-chevron-right text-xs"></i>
-        </div>
-      </button>
-    </div>
-  </div>
-
-  <!-- MODAL DE CONFIRMACIÓN DE PEDIDO -->
-  <div id="orderModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-0 sm:p-4">
-    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden transform translate-y-full transition-transform duration-300" id="modalContainer">
-      <!-- Modal Header -->
-      <div class="p-4 bg-brand-bg border-b border-brand-border flex items-center justify-between">
-        <div class="flex items-center space-x-2">
-          <i class="fa-solid fa-receipt text-brand-main text-lg"></i>
-          <h3 class="font-extrabold text-base text-brand-text">Resumen de Tu Pedido</h3>
-        </div>
-        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white text-gray-500 flex items-center justify-center hover:bg-gray-100 shadow-sm">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <!-- Modal Content Scrollable -->
-      <div class="p-4 overflow-y-auto space-y-4 text-brand-text">
-        <div id="modalItems" class="space-y-2 border-b border-gray-100 pb-3">
-          <!-- Se llena dinámicamente -->
-        </div>
-
-        <!-- Opciones de Pedido -->
-        <div class="space-y-3 pt-1">
-          <div>
-            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Nombre Completo</label>
-            <input type="text" id="custName" placeholder="Tu nombre" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs text-brand-text focus:outline-none focus:border-brand-main">
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Tipo de Entrega</label>
-            <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-amber-50/50">
-                <input type="radio" name="deliveryType" value="Delivery" checked class="accent-brand-main">
-                <span class="text-xs font-medium">🛵 Delivery</span>
-              </label>
-              <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-amber-50/50">
-                <input type="radio" name="deliveryType" value="Pick-up" class="accent-brand-main">
-                <span class="text-xs font-medium">🏪 Pick-up</span>
-              </label>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Dirección / Notas Especiales</label>
-            <textarea id="custNotes" rows="2" placeholder="Ej: Sin cebolla, dirección exacta para delivery..." class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs text-brand-text focus:outline-none focus:border-brand-main"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="p-4 bg-gray-50 border-t border-gray-100 space-y-3">
-        <div class="flex items-center justify-between text-sm font-black text-brand-text">
-          <span>TOTAL A PAGAR:</span>
-          <span id="modalTotal" class="text-lg text-brand-accent">$0.00</span>
-        </div>
-        <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl shadow-lg flex items-center justify-center space-x-2 transition-all">
-          <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span>Enviar Pedido por WhatsApp</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT DE CONTROL -->
-  <script>
-    const cart = {};
-
-    function updateQty(id, change) {
-      const card = document.querySelector(`[onclick*="'${id}'"]`).closest('.product-card');
-      const title = card.getAttribute('data-title');
-      const price = parseFloat(card.getAttribute('data-price'));
-
-      if (!cart[id]) {
-        cart[id] = { title, price, qty: 0 };
-      }
-
-      cart[id].qty += change;
-
-      if (cart[id].qty <= 0) {
-        delete cart[id];
-        document.getElementById(`qty-${id}`).innerText = '0';
-      } else {
-        document.getElementById(`qty-${id}`).innerText = cart[id].qty;
-      }
-
-      updateCartBar();
-    }
-
-    function updateCartBar() {
-      let totalQty = 0;
-      let totalPrice = 0;
-
-      for (const id in cart) {
-        totalQty += cart[id].qty;
-        totalPrice += cart[id].qty * cart[id].price;
-      }
-
-      const cartBar = document.getElementById('cartBar');
-      if (totalQty > 0) {
-        cartBar.classList.remove('translate-y-full');
-      } else {
-        cartBar.classList.add('translate-y-full');
-      }
-
-      document.getElementById('cartCount').innerText = totalQty;
-      document.getElementById('cartTotal').innerText = `$${totalPrice.toFixed(2)}`;
-      document.getElementById('modalTotal').innerText = `$${totalPrice.toFixed(2)}`;
-    }
-
-    function openModal() {
-      const modal = document.getElementById('orderModal');
-      const container = document.getElementById('modalContainer');
-      const itemsList = document.getElementById('modalItems');
-
-      itemsList.innerHTML = '';
-      for (const id in cart) {
-        const item = cart[id];
-        const itemTotal = (item.qty * item.price).toFixed(2);
-        itemsList.innerHTML += `
-          <div class="flex items-center justify-between text-xs py-1 border-b border-gray-50">
-            <div>
-              <span class="font-bold text-brand-text">${item.qty}x</span>
-              <span class="ml-1 text-gray-700">${item.title}</span>
-            </div>
-            <span class="font-bold text-brand-accent">$${itemTotal}</span>
-          </div>
-        `;
-      }
-
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      container.classList.remove('translate-y-full');
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('orderModal');
-      const container = document.getElementById('modalContainer');
-      container.classList.add('translate-y-full');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-
-    function filterProducts() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.product-card');
-
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        if (name.includes(query)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    function scrollToCategory(catId, btn) {
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-brand-main', 'text-white', 'shadow-md', 'shadow-brand-main/20');
-        b.classList.add('bg-white', 'text-brand-text', 'border', 'border-brand-border');
-      });
-      btn.classList.remove('bg-white', 'text-brand-text', 'border', 'border-brand-border');
-      btn.classList.add('bg-brand-main', 'text-white', 'shadow-md', 'shadow-brand-main/20');
-
-      const el = document.getElementById(catId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    function sendWhatsAppOrder() {
-      const name = document.getElementById('custName').value.trim() || 'Cliente';
-      const notes = document.getElementById('custNotes').value.trim();
-      const delivery = document.querySelector('input[name="deliveryType"]:checked').value;
-
-      let message = `*¡NUEVO PEDIDO - CAOLI'S BUR'S!* 🌭🍔\n\n`;
-      message += `*Cliente:* ${name}\n`;
-      message += `*Tipo:* ${delivery}\n`;
-      if (notes) message += `*Notas/Dirección:* ${notes}\n`;
-      message += `\n*Detalle del Pedido:*\n`;
-
-      let totalPrice = 0;
-      for (const id in cart) {
-        const item = cart[id];
-        const itemTotal = item.qty * item.price;
-        totalPrice += itemTotal;
-        message += `• ${item.qty}x ${item.title} - $${itemTotal.toFixed(2)}\n`;
-      }
-
-      message += `\n*TOTAL A PAGAR: $${totalPrice.toFixed(2)}*`;
-
-      // Número telefónico de WhatsApp receptor
-      const phone = '584120000000'; // Sustituir por el teléfono del comercio
-      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-  </script>
-</body>
-</html>
+      <div class="space-y-2.5">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pepito Tradicional">
+  
