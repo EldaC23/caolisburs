@@ -46,10 +46,10 @@
       scrollbar-width: none;
     }
 
-    /* Fondo unificado en #A01F0B */
+    /* Fondo unificado en gradiente rojo */
     body {
       background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
-background-attachment: fixed;
+      background-attachment: fixed;
       font-family: 'Poppins', sans-serif;
       color: #4a2c11;
       -webkit-tap-highlight-color: transparent;
@@ -94,7 +94,7 @@ background-attachment: fixed;
 </head>
 <body class="pb-32 bg-[#A01F0B]">
 
-  <!-- HEADER FIJO (Integrado en #A01F0B) -->
+  <!-- HEADER FIJO -->
   <header class="sticky top-0 z-30 bg-[#A01F0B] border-b border-brand-border/20 shadow-md">
     <div class="max-w-md mx-auto px-4 pt-4 pb-3">
       <!-- Branding & Title -->
@@ -476,10 +476,10 @@ background-attachment: fixed;
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pepito Tradicional">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito tradicional carne pollo lomito mixtos" data-price="8.0" data-title="Pepito Tradicional">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Pepito Tradicional</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto con vegetales y queso fundido.</p>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto preparado al momento.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
@@ -491,10 +491,10 @@ background-attachment: fixed;
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis mixto jamon queso tocineta" data-price="9.5" data-title="Pepito Súper Caolis">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis queso jamon tocineta" data-price="9.5" data-title="Pepito Súper Caolis">
           <div class="pr-2">
             <h3 class="font-bold text-sm text-brand-text">Pepito Súper Caolis</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito/Pollo + Jamón, Queso rallado y Tocineta.</p>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo + Queso, Jamón y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
             <span class="text-sm font-extrabold text-brand-accent">$9.5</span>
@@ -515,32 +515,32 @@ background-attachment: fixed;
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="papas fritas racion" data-price="3.0" data-title="Ración de Papas Fritas">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="papas fritas porcion" data-price="2.5" data-title="Papas Fritas">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Ración de Papas Fritas</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Papas crujientes recién hechas.</p>
+            <h3 class="font-bold text-sm text-brand-text">Porción de Papas Fritas</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Crocantes y recién hechas.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$3.0</span>
+            <span class="text-sm font-extrabold text-brand-accent">$2.5</span>
             <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('adic-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adic-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('adic-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+              <button onclick="updateQty('adc-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adc-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adc-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra de queso tocineta jamon" data-price="1.0" data-title="Extra Queso / Tocineta / Jamón">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="refresco bebida soda" data-price="1.5" data-title="Refresco">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-brand-text">Extra Queso / Tocineta / Jamón</h3>
-            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Añade sabor extra a cualquiera de tus platos.</p>
+            <h3 class="font-bold text-sm text-brand-text">Refresco 355ml</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lata bien fría.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-accent">$1.0</span>
+            <span class="text-sm font-extrabold text-brand-accent">$1.5</span>
             <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
-              <button onclick="updateQty('adic-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adic-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
-              <button onclick="updateQty('adic-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+              <button onclick="updateQty('adc-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adc-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adc-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
@@ -549,159 +549,167 @@ background-attachment: fixed;
 
   </main>
 
-  <!-- BARRA FLOTANTE DEL CARRITO (Integrada en #A01F0B) -->
-  <div id="cartBar" class="fixed bottom-0 inset-x-0 bg-[#A01F0B]/95 backdrop-blur-md border-t border-brand-border/20 p-3 shadow-2xl z-40">
-  <div class="max-w-md mx-auto flex items-center justify-between">
-    <div>
-      <p class="text-[10px] uppercase font-bold text-amber-200 tracking-wide">Total Estimado</p>
-      <p id="totalPrice" class="text-xl font-extrabold text-white">$0.00</p>
-      <p class="text-xs font-semibold text-brand-main mt-1">*Los precios no incluyen delivery.</p>
+  <!-- BARRA DE CARRITO FLOTANTE -->
+  <div id="cartBar" class="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none transform translate-y-full transition-transform duration-300">
+    <div class="max-w-md mx-auto pointer-events-auto">
+      <button onclick="openModal()" class="w-full bg-brand-accent text-white font-bold py-3.5 px-5 rounded-2xl shadow-xl flex items-center justify-between border border-red-500/30 cta-glow">
+        <div class="flex items-center space-x-3">
+          <span id="cartCount" class="bg-white text-brand-accent font-black text-xs w-6 h-6 rounded-full flex items-center justify-center shadow-inner">0</span>
+          <span class="text-sm uppercase tracking-wide">Ver mi pedido</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span id="cartTotal" class="text-base font-black">$0.00</span>
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </div>
+      </button>
     </div>
-    <button onclick="openModal()" class="cta-glow bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl flex items-center space-x-2 text-xs shadow-lg transition-all">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span>Ver Mi Pedido</span>
-      <span id="cart-count" class="bg-white text-brand-accent font-black text-[11px] w-5 h-5 rounded-full flex items-center justify-center ml-1">0</span>
-    </button>
   </div>
-</div>
 
-  <!-- MODAL 1: RESUMEN DEL PEDIDO -->
-  <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-end sm:items-center justify-center p-0 sm:p-4 z-50 backdrop-blur-sm">
-    <div class="bg-brand-bg w-full max-w-md rounded-t-2xl sm:rounded-2xl border border-brand-border p-5 shadow-2xl max-h-[85vh] flex flex-col">
-      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
-        <h3 class="font-extrabold text-base text-brand-text flex items-center gap-2">
-          <i class="fa-solid fa-receipt text-brand-main"></i> Resumen de tu Pedido
-        </h3>
-        <button onclick="closeCartModal()" class="text-gray-400 hover:text-brand-text font-bold text-lg">&times;</button>
+  <!-- MODAL DE CONFIRMACIÓN DE PEDIDO -->
+  <div id="orderModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-0 sm:p-4">
+    <div class="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden transform translate-y-full transition-transform duration-300" id="modalContainer">
+      <!-- Modal Header -->
+      <div class="p-4 bg-brand-bg border-b border-brand-border flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-receipt text-brand-main text-lg"></i>
+          <h3 class="font-extrabold text-base text-brand-text">Resumen de Tu Pedido</h3>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white text-gray-500 flex items-center justify-center hover:bg-gray-100 shadow-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
-      <!-- Detalle de Ítems (Producto, Controles -/+, Precio) -->
-      <div id="cartItemsList" class="py-3 space-y-2 overflow-y-auto flex-1 max-h-48 text-xs border-b border-brand-border">
-        <!-- Generado dinámicamente -->
-      </div>
-
-      <!-- Formulario Cliente -->
-      <div class="pt-3 space-y-2.5 text-xs">
-        <div>
-          <label class="block font-bold text-brand-text mb-1">Tu Nombre:</label>
-          <input type="text" id="clientName" placeholder="Ej. María Pérez" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+      <!-- Modal Content Scrollable -->
+      <div class="p-4 overflow-y-auto space-y-4 text-brand-text">
+        <div id="modalItems" class="space-y-2 border-b border-gray-100 pb-3">
+          <!-- Se llena dinámicamente -->
         </div>
 
-        <div>
-          <label class="block font-bold text-brand-text mb-1">Modalidad de Entrega:</label>
-          <select id="deliveryType" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main font-medium">
-            <option value="Delivery">🛵 Delivery</option>
-            <option value="Pick-up">🏃 Retiro en Local</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block font-bold text-brand-text mb-1">Dirección / Observaciones:</label>
-          <input type="text" id="clientNotes" placeholder="Ej. Urb. Las Delicias, sin cebolla..." class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
-        </div>
-      </div>
-
-      <div class="pt-4 mt-2 border-t border-brand-border flex items-center justify-between">
-        <div>
+        <!-- Opciones de Pedido -->
+        <div class="space-y-3 pt-1">
           <div>
- <div>
-  <span class="text-[10px] uppercase font-bold text-brand-text tracking-wider block">TOTAL A PAGAR</span>
-  <span id="modal-total-price" class="text-2xl font-black text-brand-accent">$0.00</span>
-  <p class="text-xs font-medium text-brand-text italic mt-0.5">*Los precios no incluyen delivery.</p>
-</div>
-        <button onclick="proceedToInfoModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
-          <span>Continuar a WhatsApp</span>
-          <i class="fa-solid fa-arrow-right"></i>
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Nombre Completo</label>
+            <input type="text" id="custName" placeholder="Tu nombre" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs text-brand-text focus:outline-none focus:border-brand-main">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Tipo de Entrega</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-amber-50/50">
+                <input type="radio" name="deliveryType" value="Delivery" checked class="accent-brand-main">
+                <span class="text-xs font-medium">🛵 Delivery</span>
+              </label>
+              <label class="flex items-center space-x-2 border border-gray-200 p-2.5 rounded-xl cursor-pointer hover:bg-amber-50/50">
+                <input type="radio" name="deliveryType" value="Pick-up" class="accent-brand-main">
+                <span class="text-xs font-medium">🏪 Pick-up</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Dirección / Notas Especiales</label>
+            <textarea id="custNotes" rows="2" placeholder="Ej: Sin cebolla, dirección exacta para delivery..." class="w-full bg-gray-50 border border-gray-200 rounded-xl p-2.5 text-xs text-brand-text focus:outline-none focus:border-brand-main"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-gray-50 border-t border-gray-100 space-y-3">
+        <div class="flex items-center justify-between text-sm font-black text-brand-text">
+          <span>TOTAL A PAGAR:</span>
+          <span id="modalTotal" class="text-lg text-brand-accent">$0.00</span>
+        </div>
+        <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl shadow-lg flex items-center justify-center space-x-2 transition-all">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>Enviar Pedido por WhatsApp</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 2: AVISO SOBRIO & CONFIRMACIÓN FINAL -->
-  <div id="infoMenuModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-[60] backdrop-blur-sm">
-    <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center border-2 border-brand-main shadow-2xl relative text-brand-text">
-      
-      <button onclick="closeInfoModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 font-bold text-lg">&times;</button>
-
-      <div class="w-12 h-12 bg-amber-100 text-brand-main rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">
-        <i class="fa-solid fa-check"></i>
-      </div>
-
-      <h4 class="text-base font-extrabold text-brand-text mb-1">¡Tu pedido está listo!</h4>
-      <p class="text-xs text-gray-600 mb-4">Serás redirigido a WhatsApp para enviar el detalle de tu orden directamente al local.</p>
-
-      <!-- AVISO COMERCIAL SOBRIO -->
-      <div class="bg-[#f5ede2] p-4 rounded-xl border border-brand-border mb-5 text-left shadow-sm">
-        <p class="text-xs font-extrabold text-brand-text mb-1 flex items-center gap-1.5">
-          <i class="fa-solid fa-lightbulb text-brand-main"></i> ¿Te gustaría un menú interactivo para tu negocio?
-        </p>
-        <p class="text-[11px] text-gray-600 leading-relaxed mb-3">
-          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, sin comisiones por venta.
-        </p>
-        <a href="https://wa.me/584120000000?text=Hola!%20Me%20interesa%20informaci%C3%B3n%20sobre%20un%20men%C3%BA%20interactivo%20para%20mi%20negocio" 
-           target="_blank" 
-           class="block text-center text-xs bg-brand-main hover:bg-brand-dark text-white py-2 rounded-lg font-bold transition-all shadow-sm">
-          Solicitar Información
-        </a>
-      </div>
-
-      <!-- BOTÓN FINAL A WHATSAPP -->
-      <button onclick="sendFinalWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1eb354] text-white py-3 rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all">
-        <i class="fa-brands fa-whatsapp text-sm"></i>
-        <span>Enviar Pedido por WhatsApp</span>
-      </button>
-
-    </div>
-  </div>
-
-  <!-- SCRIPT DE LÓGICA COMPLETA -->
+  <!-- JAVASCRIPT DE CONTROL -->
   <script>
-    let cart = {};
-    let finalWhatsAppUrl = "";
+    const cart = {};
 
     function updateQty(id, change) {
-      if (!cart[id]) cart[id] = 0;
-      cart[id] += change;
-      if (cart[id] <= 0) delete cart[id];
+      const card = document.querySelector(`[onclick*="'${id}'"]`).closest('.product-card');
+      const title = card.getAttribute('data-title');
+      const price = parseFloat(card.getAttribute('data-price'));
 
-      const qtyElement = document.getElementById(`qty-${id}`);
-      if (qtyElement) {
-        qtyElement.innerText = cart[id] || 0;
+      if (!cart[id]) {
+        cart[id] = { title, price, qty: 0 };
       }
 
-      calculateTotal();
+      cart[id].qty += change;
+
+      if (cart[id].qty <= 0) {
+        delete cart[id];
+        document.getElementById(`qty-${id}`).innerText = '0';
+      } else {
+        document.getElementById(`qty-${id}`).innerText = cart[id].qty;
+      }
+
+      updateCartBar();
     }
 
-    function updateQtyModal(id, change) {
-      updateQty(id, change);
-      renderCartModal();
+    function updateCartBar() {
+      let totalQty = 0;
+      let totalPrice = 0;
+
+      for (const id in cart) {
+        totalQty += cart[id].qty;
+        totalPrice += cart[id].qty * cart[id].price;
+      }
+
+      const cartBar = document.getElementById('cartBar');
+      if (totalQty > 0) {
+        cartBar.classList.remove('translate-y-full');
+      } else {
+        cartBar.classList.add('translate-y-full');
+      }
+
+      document.getElementById('cartCount').innerText = totalQty;
+      document.getElementById('cartTotal').innerText = `$${totalPrice.toFixed(2)}`;
+      document.getElementById('modalTotal').innerText = `$${totalPrice.toFixed(2)}`;
     }
 
-    function calculateTotal() {
-      let total = 0;
-      let count = 0;
+    function openModal() {
+      const modal = document.getElementById('orderModal');
+      const container = document.getElementById('modalContainer');
+      const itemsList = document.getElementById('modalItems');
 
-      document.querySelectorAll('.product-card').forEach(card => {
-        const btn = card.querySelector('[id^="qty-"]');
-        if (btn) {
-          const id = btn.id.replace('qty-', '');
-          const qty = cart[id] || 0;
-          const price = parseFloat(card.getAttribute('data-price')) || 0;
-          
-          total += qty * price;
-          count += qty;
-        }
-      });
+      itemsList.innerHTML = '';
+      for (const id in cart) {
+        const item = cart[id];
+        const itemTotal = (item.qty * item.price).toFixed(2);
+        itemsList.innerHTML += `
+          <div class="flex items-center justify-between text-xs py-1 border-b border-gray-50">
+            <div>
+              <span class="font-bold text-brand-text">${item.qty}x</span>
+              <span class="ml-1 text-gray-700">${item.title}</span>
+            </div>
+            <span class="font-bold text-brand-accent">$${itemTotal}</span>
+          </div>
+        `;
+      }
 
-      document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
-      document.getElementById('modalTotalPrice').innerText = `$${total.toFixed(2)}`;
-      document.getElementById('cartCount').innerText = count;
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      container.classList.remove('translate-y-full');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('orderModal');
+      const container = document.getElementById('modalContainer');
+      container.classList.add('translate-y-full');
+      modal.classList.add('opacity-0', 'pointer-events-none');
     }
 
     function filterProducts() {
-      const query = document.getElementById('searchInput').value.toLowerCase().trim();
-      document.querySelectorAll('.product-card').forEach(card => {
-        const name = card.getAttribute('data-name').toLowerCase();
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const name = card.getAttribute('data-name');
         if (name.includes(query)) {
           card.style.display = 'flex';
         } else {
@@ -710,130 +718,45 @@ background-attachment: fixed;
       });
     }
 
-    function scrollToCategory(id, btn) {
+    function scrollToCategory(catId, btn) {
       document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-brand-main', 'text-white');
-        b.classList.add('bg-white', 'text-brand-text');
+        b.classList.remove('bg-brand-main', 'text-white', 'shadow-md', 'shadow-brand-main/20');
+        b.classList.add('bg-white', 'text-brand-text', 'border', 'border-brand-border');
       });
+      btn.classList.remove('bg-white', 'text-brand-text', 'border', 'border-brand-border');
+      btn.classList.add('bg-brand-main', 'text-white', 'shadow-md', 'shadow-brand-main/20');
 
-      btn.classList.remove('bg-white', 'text-brand-text');
-      btn.classList.add('bg-brand-main', 'text-white');
-
-      const target = document.getElementById(id);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
+      const el = document.getElementById(catId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
-    function renderCartModal() {
-      const listContainer = document.getElementById('cartItemsList');
-      listContainer.innerHTML = '';
+    function sendWhatsAppOrder() {
+      const name = document.getElementById('custName').value.trim() || 'Cliente';
+      const notes = document.getElementById('custNotes').value.trim();
+      const delivery = document.querySelector('input[name="deliveryType"]:checked').value;
 
-      let hasItems = false;
-      document.querySelectorAll('.product-card').forEach(card => {
-        const btn = card.querySelector('[id^="qty-"]');
-        if (btn) {
-          const id = btn.id.replace('qty-', '');
-          const qty = cart[id] || 0;
-          if (qty > 0) {
-            hasItems = true;
-            const title = card.getAttribute('data-title');
-            const price = parseFloat(card.getAttribute('data-price'));
-            const subtotal = qty * price;
+      let message = `*¡NUEVO PEDIDO - CAOLI'S BUR'S!* 🌭🍔\n\n`;
+      message += `*Cliente:* ${name}\n`;
+      message += `*Tipo:* ${delivery}\n`;
+      if (notes) message += `*Notas/Dirección:* ${notes}\n`;
+      message += `\n*Detalle del Pedido:*\n`;
 
-            const itemRow = document.createElement('div');
-            itemRow.className = "flex justify-between items-center py-2 border-b border-brand-border/40 font-medium text-xs";
-            itemRow.innerHTML = `
-              <span class="flex-1 pr-2 font-semibold text-brand-text truncate">${title}</span>
-              <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 mr-3 flex-shrink-0 shadow-sm">
-                <button onclick="updateQtyModal('${id}', -1)" class="w-5 h-5 rounded bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
-                <span class="text-xs font-bold w-4 text-center text-brand-text">${qty}</span>
-                <button onclick="updateQtyModal('${id}', 1)" class="w-5 h-5 rounded bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
-              </div>
-              <span class="font-bold text-brand-accent text-right w-12 flex-shrink-0">$${subtotal.toFixed(2)}</span>
-            `;
-            listContainer.appendChild(itemRow);
-          }
-        }
-      });
-
-      if (!hasItems) {
-        listContainer.innerHTML = '<p class="text-center text-gray-500 py-4 text-xs font-medium">Tu pedido está vacío</p>';
-      }
-    }
-
-    function openCartModal() {
-      if (Object.keys(cart).length === 0) {
-        alert("Por favor agrega al menos un producto a tu pedido.");
-        return;
+      let totalPrice = 0;
+      for (const id in cart) {
+        const item = cart[id];
+        const itemTotal = item.qty * item.price;
+        totalPrice += itemTotal;
+        message += `• ${item.qty}x ${item.title} - $${itemTotal.toFixed(2)}\n`;
       }
 
-      renderCartModal();
+      message += `\n*TOTAL A PAGAR: $${totalPrice.toFixed(2)}*`;
 
-      document.getElementById('cartModal').classList.remove('hidden');
-      document.getElementById('cartModal').classList.add('flex');
-    }
-
-    function closeCartModal() {
-      document.getElementById('cartModal').classList.add('hidden');
-      document.getElementById('cartModal').classList.remove('flex');
-    }
-
-    function proceedToInfoModal() {
-      if (Object.keys(cart).length === 0) {
-        alert("Por favor agrega al menos un producto a tu pedido.");
-        return;
-      }
-
-      const name = document.getElementById('clientName').value.trim() || 'Cliente';
-      const type = document.getElementById('deliveryType').value;
-      const notes = document.getElementById('clientNotes').value.trim() || 'Sin observaciones';
-
-      let msg = `*NUEVO PEDIDO - CAOLI'S BUR'S*\n`;
-      msg += `----------------------------------\n`;
-      msg += `👤 *Cliente:* ${name}\n`;
-      msg += `🛵 *Modalidad:* ${type}\n\n`;
-      msg += `📋 *Detalle:* \n`;
-
-      let total = 0;
-      document.querySelectorAll('.product-card').forEach(card => {
-        const btn = card.querySelector('[id^="qty-"]');
-        if (btn) {
-          const id = btn.id.replace('qty-', '');
-          const qty = cart[id] || 0;
-          if (qty > 0) {
-            const title = card.getAttribute('data-title');
-            const price = parseFloat(card.getAttribute('data-price'));
-            const subtotal = qty * price;
-            total += subtotal;
-            msg += `• ${qty}x ${title} ($${subtotal.toFixed(2)})\n`;
-          }
-        }
-      });
-
-      msg += `\n💵 *Total:* $${total.toFixed(2)}\n`;
-      msg += `📝 *Observaciones/Dirección:* ${notes}\n`;
-      msg += `----------------------------------`;
-
-      const phoneNumber = "584120000000"; // Reemplazar con el número oficial de Caoli's Bur's
-      finalWhatsAppUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
-
-      closeCartModal();
-
-      document.getElementById('infoMenuModal').classList.remove('hidden');
-      document.getElementById('infoMenuModal').classList.add('flex');
-    }
-
-    function closeInfoModal() {
-      document.getElementById('infoMenuModal').classList.add('hidden');
-      document.getElementById('infoMenuModal').classList.remove('flex');
-    }
-
-    function sendFinalWhatsApp() {
-      if (finalWhatsAppUrl) {
-        window.open(finalWhatsAppUrl, '_blank');
-      }
-      closeInfoModal();
+      // Número telefónico de WhatsApp receptor
+      const phone = '584120000000'; // Sustituir por el teléfono del comercio
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
     }
   </script>
 </body>
