@@ -19,12 +19,13 @@
         extend: {
           colors: {
             brand: {
-              main: '#FFC837',
-              dark: '#E0A800',
-              accent: '#E63946',
-              bg: '#0F0E0E',
-              card: '#1A1817',
-              border: '#2A2624'
+              main: '#d97706',      /* Mostaza */
+              dark: '#b45309',      /* Mostaza Oscuro */
+              accent: '#b91c1c',    /* Rojo */
+              bg: '#f5ede2',        /* Fondo Claro Warm */
+              card: '#e8dccb',      /* Tarjeta Clara */
+              border: '#dfcfb9',    /* Borde Claro */
+              text: '#4a2c11'       /* Texto Marrón Oscuro */
             }
           },
           fontFamily: {
@@ -45,13 +46,13 @@
       scrollbar-width: none;
     }
 
-    /* Radial dark background pattern */
+    /* Radial light warm background pattern */
     body {
-      background-color: #0D0C0C;
-      background-image: radial-gradient(circle at 50% 0%, rgba(255, 200, 55, 0.08), transparent 70%);
+      background-color: #f5ede2;
+      background-image: radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.08), transparent 70%);
       background-attachment: fixed;
       font-family: 'Poppins', sans-serif;
-      color: #F3F4F6;
+      color: #4a2c11;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -60,7 +61,7 @@
       position: relative;
       display: inline-block;
       padding: 4px 18px;
-      color: #0D0C0C;
+      color: #ffffff;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -69,18 +70,18 @@
       content: "";
       position: absolute;
       inset: -2px -8px;
-      background: linear-gradient(100deg, #FFC837, #E0A800);
+      background: linear-gradient(100deg, #d97706, #b45309);
       transform: rotate(-1.5deg) skewX(-6deg);
       border-radius: 6px 14px 6px 14px;
       z-index: -1;
       opacity: 0.98;
-      box-shadow: 0 4px 12px rgba(255, 200, 55, 0.25);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
     }
 
     /* Glow pulse CTA */
     @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 4px 18px rgba(230, 57, 70, 0.5); }
-      50% { box-shadow: 0 4px 28px rgba(230, 57, 70, 0.85); }
+      0%, 100% { box-shadow: 0 4px 18px rgba(185, 28, 28, 0.4); }
+      50% { box-shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
     }
     .cta-glow {
       animation: glowPulse 2.2s ease-in-out infinite;
@@ -94,50 +95,44 @@
 </head>
 <body class="pb-32">
 
-  <!-- HEADER FIJO -->
-  <header class="sticky top-0 z-30 bg-gradient-to-b from-[#241708] via-[#1A1208] to-[#0D0C0C] border-b border-brand-border shadow-xl">
+  <!-- HEADER FIJO (Sin el distintivo de ABIERTO) -->
+  <header class="sticky top-0 z-30 bg-gradient-to-b from-[#ebdcc8] via-[#f5ede2] to-[#f5ede2] border-b border-brand-border shadow-sm">
     <div class="max-w-md mx-auto px-4 pt-4 pb-3">
       <!-- Branding & Title -->
       <div class="flex items-center justify-between mb-2">
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-black p-0.5 overflow-hidden shadow-md flex-shrink-0">
-            <!-- Simulated Logo SVG based on provided brand -->
+          <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-white p-0.5 overflow-hidden shadow-md flex-shrink-0">
             <div class="w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex flex-col items-center justify-center text-center p-1">
-              <i class="fa-solid fa-cow text-brand-main text-xs"></i>
+              <i class="fa-solid fa-cow text-amber-200 text-xs"></i>
               <span class="text-[7px] font-black leading-none text-white tracking-tighter">CAOLI'S</span>
             </div>
           </div>
           <div>
-            <h1 class="text-xl font-black tracking-wide text-brand-main uppercase leading-tight drop-shadow">
+            <h1 class="text-xl font-black tracking-wide text-brand-text uppercase leading-tight drop-shadow-sm">
               CAOLI'S BUR'S
             </h1>
             <p class="text-xs font-semibold text-brand-accent tracking-wider uppercase">SINCE 1998 • SABOR TRADICIONAL</p>
           </div>
         </div>
-        <div class="text-right">
-          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>ABIERTO
-          </span>
-        </div>
       </div>
 
       <!-- Info Operativa -->
-      <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-gray-300 bg-black/40 p-2 rounded-xl border border-white/5">
+      <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-brand-text font-medium bg-white/70 p-2 rounded-xl border border-brand-border/60 shadow-sm">
         <div class="flex items-center space-x-1.5">
           <i class="fa-solid fa-motorcycle text-brand-main text-xs"></i>
           <span>Delivery & Pick-up</span>
         </div>
         <div class="flex items-center space-x-1.5">
-          <i class="fa-solid fa-clock text-brand-main text-xs"></i>
+          <i class="fa-solid fa-location-dot text-brand-main text-xs"></i>
           <span>Maracay, Edo. Aragua</span>
         </div>
       </div>
 
       <!-- Redes Sociales -->
-      <div class="flex items-center justify-center space-x-4 mb-3 text-gray-400 text-xs">
+      <div class="flex items-center justify-center space-x-4 mb-3 text-gray-600 text-xs">
         <a href="#" class="hover:text-brand-main transition-colors flex items-center space-x-1"><i class="fa-brands fa-instagram text-sm text-brand-main"></i> <span>@caolisburs</span></a>
-        <span class="text-gray-700">•</span>
-        <a href="#" class="hover:text-brand-main transition-colors flex items-center space-x-1"><i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i> <span>WhatsApp Directo</span></a>
+        <span class="text-gray-400">•</span>
+        <a href="#" class="hover:text-brand-main transition-colors flex items-center space-x-1"><i class="fa-brands fa-whatsapp text-sm text-emerald-600"></i> <span>WhatsApp Directo</span></a>
       </div>
 
       <!-- Buscador -->
@@ -147,25 +142,25 @@
           id="searchInput"
           oninput="filterProducts()"
           placeholder="¿Qué se te antoja hoy? Buscar..." 
-          class="w-full bg-black/60 border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-main transition-all shadow-inner"
+          class="w-full bg-white border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-brand-text placeholder-gray-400 focus:outline-none focus:border-brand-main transition-all shadow-sm"
         >
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 text-xs"></i>
       </div>
     </div>
 
     <!-- Navegación de Categorías Horizontal -->
-    <div class="border-t border-white/5 bg-black/50 backdrop-blur-md">
+    <div class="border-t border-brand-border/50 bg-white/60 backdrop-blur-md">
       <div class="max-w-md mx-auto px-3 py-2 flex space-x-2 overflow-x-auto no-scrollbar" id="categoryNav">
-        <button onclick="scrollToCategory('perros', this)" class="cat-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-main text-black shadow-md shadow-brand-main/20">
+        <button onclick="scrollToCategory('perros', this)" class="cat-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-main text-white shadow-md shadow-brand-main/20">
           🌭 Perros Calientes
         </button>
-        <button onclick="scrollToCategory('hamburguesas', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-card text-gray-300 border border-brand-border hover:border-brand-main/50">
+        <button onclick="scrollToCategory('hamburguesas', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
           🍔 Hamburguesas
         </button>
-        <button onclick="scrollToCategory('pepitos', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-card text-gray-300 border border-brand-border hover:border-brand-main/50">
+        <button onclick="scrollToCategory('pepitos', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
           🥖 Pepitos
         </button>
-        <button onclick="scrollToCategory('adicionales', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-card text-gray-300 border border-brand-border hover:border-brand-main/50">
+        <button onclick="scrollToCategory('adicionales', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
           🍟 Adicionales
         </button>
       </div>
@@ -179,159 +174,168 @@
     <section id="perros" class="category-section scroll-mt-36">
       <div class="mb-3">
         <h2 class="brush-title text-sm">Perros Calientes</h2>
-        <p class="text-[11px] text-gray-400 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg">
+        <p class="text-[11px] text-gray-700 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg font-medium">
           <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
       <div class="space-y-2.5" id="list-perros">
-        <!-- Item -->
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="clasica perrito caliente salchicha">
+        <!-- Item 1 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica perrito caliente salchicha" data-price="3.5" data-title="Clásica (Perro)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Clásica</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Salchicha tradicional, vegetales y salsas.</p>
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha tradicional, vegetales y salsas.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$3.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-1', -1)" class="w-6 h-6 rounded-md bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold text-xs active:bg-brand-main active:text-black">-</button>
-              <span id="qty-perro-1" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs active:bg-brand-dark">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$3.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="caolis salchicha jamon queso tocineta">
+        <!-- Item 2 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis salchicha jamon queso tocineta" data-price="4.0" data-title="Caolis (Perro)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Salchicha + 1 adicional a elegir (Jamón, Queso o Tocineta).</p>
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha + 1 adicional a elegir (Jamón, Queso o Tocineta).</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$4.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-2', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-2" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$4.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="super caolis salchicha jamon queso tocineta">
+        <!-- Item 3 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="Súper Caolis (Perro)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Súper Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$5.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-3" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$5.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="choripan clasico chorizo ajo ahumado carupanero">
+        <!-- Item 4 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Choripán Clásico</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
+            <h3 class="font-bold text-sm text-brand-text">Choripán Clásico</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$4.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-4" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$4.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="choripan super caolis jamon queso tocineta">
+        <!-- Item 5 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Choripán Súper Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Choripán Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-5" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="polaco salchicha polaca">
+        <!-- Item 6 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="Polaco">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Polaco</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
+            <h3 class="font-bold text-sm text-brand-text">Polaco</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$5.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-6" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="polaco super caolis salchicha polaca jamon queso tocineta">
+        <!-- Item 7 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="Polaco Súper Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Polaco Súper Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Polaco Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-7" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="ternerito lomito pollo">
+        <!-- Item 8 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Ternerito</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
+            <h3 class="font-bold text-sm text-brand-text">Ternerito</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$7.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-8" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="ternerito super caolis lomito pollo jamon queso tocineta">
+        <!-- Item 9 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Ternerito Súper Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Ternerito Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$8.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-9" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-9" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="tri mixto lomito pollo jamon queso tocineta">
+        <!-- Item 10 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="Tri-Mixto (Perro)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Tri-Mixto</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Tri-Mixto</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$8.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-perro-10" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-10" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
@@ -342,128 +346,128 @@
     <section id="hamburguesas" class="category-section scroll-mt-36">
       <div class="mb-3">
         <h2 class="brush-title text-sm">Hamburguesas</h2>
-        <p class="text-[11px] text-gray-400 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg">
+        <p class="text-[11px] text-gray-700 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg font-medium">
           <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="clasica carne pollo 110gr">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="Clásica (Burger)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Clásica</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$5.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-1" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="caolis carne pollo 110gr jamon queso tocineta">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="Caolis (Burger)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-2" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="super caolis carne pollo 110gr jamon queso tocineta">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="Súper Caolis (Burger)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Súper Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-3" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="extra carne pollo queso jamon tocineta huevo">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="Extra (Burger)">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Extra</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
+            <h3 class="font-bold text-sm text-brand-text">Extra</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$7.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-4" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="Caolis Combinada">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Caolis Combinada</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
+            <h3 class="font-bold text-sm text-brand-text">Caolis Combinada</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$8.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-5" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="Triple Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Triple Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
+            <h3 class="font-bold text-sm text-brand-text">Triple Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$10.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-6" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$10.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="caolis chuleton chuleta ahumada queso huevo">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="Caolis Chuletón">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Caolis Chuletón</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
+            <h3 class="font-bold text-sm text-brand-text">Caolis Chuletón</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-7" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="cheese caolis carne rellena queso cheddar tocineta">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="Cheese Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Cheese Caolis</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
+            <h3 class="font-bold text-sm text-brand-text">Cheese Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$7.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-burg-8" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$7.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
@@ -474,53 +478,38 @@
     <section id="pepitos" class="category-section scroll-mt-36">
       <div class="mb-3">
         <h2 class="brush-title text-sm">Pepitos</h2>
-        <p class="text-[11px] text-gray-400 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg">
+        <p class="text-[11px] text-gray-700 mt-2 bg-amber-500/10 border-l-2 border-brand-main p-2 rounded-r-lg font-medium">
           <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="pepito normal carne pollo mixto">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pepito Tradicional">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Normal</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne, Pollo o Mixto.</p>
+            <h3 class="font-bold text-sm text-brand-text">Pepito Tradicional</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto con vegetales y queso fundido.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$12.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('pep-1', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-pep-1" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('pep-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('pep-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-pep-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('pep-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="pepito emperador carne pollo mixto jamon queso tocineta huevo salchicha polaca">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="pepito super caolis mixto jamon queso tocineta" data-price="9.5" data-title="Pepito Súper Caolis">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Emperador</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Carne, Pollo o Mixto + Jamón, Queso/Tocineta, Huevo y Salchicha Polaca.</p>
+            <h3 class="font-bold text-sm text-brand-text">Pepito Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito/Pollo + Jamón, Queso rallado y Tocineta.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$15.5</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('pep-2', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-pep-2" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('pep-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="pepito granjero milanesa pollo empanizada doble queso">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Granjero</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Milanesa de Pollo Empanizada + Doble Queso.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$7.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('pep-3', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-pep-3" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('pep-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$9.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('pep-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-pep-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('pep-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
@@ -534,304 +523,185 @@
       </div>
 
       <div class="space-y-2.5">
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="nuggets 5 nuggets 150grs papas fritas">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="papas fritas racion" data-price="3.0" data-title="Ración de Papas Fritas">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Nuggets</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">5 Nuggets + 150grs de Papas Fritas.</p>
+            <h3 class="font-bold text-sm text-brand-text">Ración de Papas Fritas</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Papas crujientes recién hechas.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$6.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('adic-1', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adic-1" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('adic-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$3.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('adic-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adic-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adic-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
 
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="papas fritas 150grs">
+        <div class="product-card bg-brand-card p-3 rounded-xl border border-brand-border shadow-sm flex items-center justify-between transition-all" data-name="extra de queso tocineta jamon" data-price="1.0" data-title="Extra Queso / Tocineta / Jamón">
           <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Papas Fritas</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Ración de 150grs de Papas Fritas crujientes.</p>
+            <h3 class="font-bold text-sm text-brand-text">Extra Queso / Tocineta / Jamón</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Añade sabor extra a cualquiera de tus platos.</p>
           </div>
           <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$2.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('adic-2', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adic-2" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('adic-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-card bg-gradient-to-r from-brand-card to-[#221f1d] p-3 rounded-xl border border-brand-border/80 shadow-md flex items-center justify-between active:scale-[0.98] transition-transform" data-name="un adicional jamon queso papas fritas">
-          <div class="pr-2">
-            <h3 class="font-bold text-sm text-white">Un Adicional</h3>
-            <p class="text-[11px] text-gray-400 leading-tight mt-0.5">Jamón, Queso o Papas Fritas extra.</p>
-          </div>
-          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
-            <span class="text-sm font-extrabold text-brand-main">$1.0</span>
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-2">
-              <button onclick="updateQty('adic-3', -1)" class="w-6 h-6 rounded-md bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span id="qty-adic-3" class="text-xs font-bold w-4 text-center">0</span>
-              <button onclick="updateQty('adic-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
+            <span class="text-sm font-extrabold text-brand-accent">$1.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 shadow-sm">
+              <button onclick="updateQty('adic-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adic-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adic-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER DE CONVERSIÓN (PROSPECCIÓN EFECTO LANDING) -->
-    <div class="my-8 p-4 rounded-2xl bg-gradient-to-br from-amber-950/40 via-black to-red-950/40 border border-brand-main/30 text-center shadow-xl">
-      <div class="w-10 h-10 bg-brand-main/20 text-brand-main rounded-full flex items-center justify-center mx-auto mb-2 text-lg">
-        <i class="fa-solid fa-rocket"></i>
-      </div>
-      <h4 class="text-xs font-bold text-white uppercase tracking-wider">¿Te gustaría un menú interactivo como este para tu negocio?</h4>
-      <p class="text-[11px] text-gray-400 mt-1 mb-3">Aumenta tus ventas por WhatsApp con un catálogo profesional, moderno y fácil de usar.</p>
-      <a href="https://wa.me/?text=Hola%20Efecto%20Landing,%20me%20gust%C3%B3%20el%20demo%20del%20men%C3%BA%20interactivo%20y%20quiero%20informaci%C3%B3n" target="_blank" class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-brand-main to-brand-dark text-black font-extrabold text-xs rounded-full shadow-lg hover:brightness-110 transition-all">
-        <i class="fa-brands fa-whatsapp text-sm mr-1.5"></i> Solicitalo aquí en Efecto Landing
-      </a>
-    </div>
-
   </main>
 
-  <!-- BARRA INFERIOR FLOTANTE -->
-  <div class="fixed bottom-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-md border-t border-brand-border py-3 px-4 shadow-2xl">
+  <!-- BARRA FLOTANTE DEL CARRITO -->
+  <div id="cartBar" class="fixed bottom-0 inset-x-0 bg-[#ebdcc8]/95 backdrop-blur-md border-t border-brand-border p-3 shadow-2xl z-40">
     <div class="max-w-md mx-auto flex items-center justify-between">
       <div>
-        <span class="block text-[10px] text-gray-400 font-medium uppercase tracking-wider">Total Acumulado</span>
-        <span id="barTotal" class="text-xl font-black text-brand-main">$0.00</span>
+        <p class="text-[10px] uppercase font-bold text-gray-600 tracking-wider">Total Estimado</p>
+        <p id="totalPrice" class="text-xl font-extrabold text-brand-accent">$0.00</p>
       </div>
-      <button 
-        onclick="openModal()"
-        class="cta-glow bg-gradient-to-r from-brand-accent to-red-700 text-white font-extrabold text-xs px-6 py-3 rounded-full flex items-center space-x-2 active:scale-95 transition-all"
-      >
-        <span>VER PEDIDO</span>
-        <span id="barCount" class="bg-black/40 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">0</span>
-        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      <button onclick="openCartModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-md cta-glow flex items-center space-x-2 text-xs transition-all">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Ver Mi Pedido</span>
+        <span id="cartCount" class="bg-white text-brand-accent text-[10px] px-1.5 py-0.5 rounded-full font-black">0</span>
       </button>
     </div>
   </div>
 
-  <!-- MODAL DE REVISIÓN DE PEDIDO -->
-  <div id="cartModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center hidden transition-opacity">
-    <div class="bg-[#181615] border-t sm:border border-brand-border w-full max-w-md rounded-t-3xl sm:rounded-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+  <!-- MODAL 1: RESUMEN DEL PEDIDO -->
+  <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-end sm:items-center justify-center p-0 sm:p-4 z-50 backdrop-blur-sm">
+    <div class="bg-brand-bg w-full max-w-md rounded-t-2xl sm:rounded-2xl border border-brand-border p-5 shadow-2xl max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <h3 class="font-extrabold text-base text-brand-text flex items-center gap-2">
+          <i class="fa-solid fa-receipt text-brand-main"></i> Resumen de tu Pedido
+        </h3>
+        <button onclick="closeCartModal()" class="text-gray-400 hover:text-brand-text font-bold text-lg">&times;</button>
+      </div>
+
+      <!-- Detalle de Ítems -->
+      <div id="cartItemsList" class="py-3 space-y-2 overflow-y-auto flex-1 max-h-48 text-xs border-b border-brand-border">
+        <!-- Generado dinámicamente -->
+      </div>
+
+      <!-- Formulario Cliente -->
+      <div class="pt-3 space-y-2.5 text-xs">
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Tu Nombre:</label>
+          <input type="text" id="clientName" placeholder="Ej. María Pérez" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+        </div>
+
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Modalidad de Entrega:</label>
+          <select id="deliveryType" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main font-medium">
+            <option value="Delivery">🛵 Delivery</option>
+            <option value="Pick-up">🏃 Retiro en Local</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Dirección / Observaciones:</label>
+          <input type="text" id="clientNotes" placeholder="Ej. Urb. Las Delicias, sin cebolla..." class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+        </div>
+      </div>
+
+      <div class="pt-4 mt-2 border-t border-brand-border flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-gray-500 font-bold uppercase">Total a Pagar</p>
+          <p id="modalTotalPrice" class="text-lg font-extrabold text-brand-accent">$0.00</p>
+        </div>
+        <button onclick="proceedToInfoModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
+          <span>Continuar a WhatsApp</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: AVISO SOBRIO & CONFIRMACIÓN FINAL -->
+  <div id="infoMenuModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-[60] backdrop-blur-sm">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center border-2 border-brand-main shadow-2xl relative text-brand-text">
       
-      <!-- Modal Header -->
-      <div class="p-4 border-b border-white/10 flex items-center justify-between bg-black/40">
-        <div class="flex items-center space-x-2">
-          <i class="fa-solid fa-receipt text-brand-main"></i>
-          <h3 class="font-extrabold text-sm text-white">Resumen de Tu Pedido</h3>
-        </div>
-        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/10 text-gray-400 hover:text-white flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+      <button onclick="closeInfoModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 font-bold text-lg">&times;</button>
+
+      <div class="w-12 h-12 bg-amber-100 text-brand-main rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">
+        <i class="fa-solid fa-check"></i>
       </div>
 
-      <!-- Modal Body (Scrollable) -->
-      <div class="p-4 overflow-y-auto space-y-4 flex-1">
-        
-        <!-- Lista de Items Seleccionados -->
-        <div id="modalCartItems" class="space-y-2">
-          <!-- Items injected by JS -->
-        </div>
+      <h4 class="text-base font-extrabold text-brand-text mb-1">¡Tu pedido está listo!</h4>
+      <p class="text-xs text-gray-600 mb-4">Serás redirigido a WhatsApp para enviar el detalle de tu orden directamente al local.</p>
 
-        <!-- Estado Vacío -->
-        <div id="emptyCartState" class="text-center py-8 hidden">
-          <i class="fa-solid fa-basket-shopping text-4xl text-gray-600 mb-2"></i>
-          <p class="text-xs text-gray-400 font-medium">Tu pedido está vacío</p>
-          <p class="text-[10px] text-gray-500 mt-1">Selecciona productos del menú para continuar.</p>
-        </div>
-
-        <!-- Formularios de Cliente y Notas -->
-        <div class="pt-3 border-t border-white/10 space-y-3">
-          <div>
-            <label class="block text-[11px] font-semibold text-gray-300 mb-1">Tu Nombre Completo *</label>
-            <input 
-              type="text" 
-              id="clientName" 
-              placeholder="Ej. María Pérez" 
-              class="w-full bg-black/50 border border-brand-border rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-main"
-            >
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-semibold text-gray-300 mb-1">Notas / Observaciones</label>
-            <textarea 
-              id="clientNotes" 
-              rows="2" 
-              placeholder="Ej. Sin cebolla, salsas aparte, dirección de entrega..." 
-              class="w-full bg-black/50 border border-brand-border rounded-xl px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-main resize-none"
-            ></textarea>
-          </div>
-        </div>
-
+      <!-- AVISO COMERCIAL SOBRIO -->
+      <div class="bg-[#f5ede2] p-4 rounded-xl border border-brand-border mb-5 text-left shadow-sm">
+        <p class="text-xs font-extrabold text-brand-text mb-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-lightbulb text-brand-main"></i> ¿Te gustaría un menú interactivo para tu negocio?
+        </p>
+        <p class="text-[11px] text-gray-600 leading-relaxed mb-3">
+          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, sin comisiones por venta.
+        </p>
+        <a href="https://wa.me/584120000000?text=Hola!%20Me%20interesa%20informaci%C3%B3n%20sobre%20un%20men%C3%BA%20interactivo%20para%20mi%20negocio" 
+           target="_blank" 
+           class="block text-center text-xs bg-brand-main hover:bg-brand-dark text-white py-2 rounded-lg font-bold transition-all shadow-sm">
+          Solicitar Información
+        </a>
       </div>
 
-      <!-- Modal Footer -->
-      <div class="p-4 border-t border-white/10 bg-black/60 space-y-3">
-        <div class="flex justify-between items-center text-sm font-bold">
-          <span class="text-gray-300">Total a Pagar:</span>
-          <span id="modalTotal" class="text-lg text-brand-main font-black">$0.00</span>
-        </div>
-
-        <button 
-          id="sendWhatsappBtn"
-          onclick="sendWhatsApp()" 
-          class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3 px-4 rounded-xl flex items-center justify-center space-x-2 shadow-lg transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <i class="fa-brands fa-whatsapp text-lg"></i>
-          <span class="text-xs uppercase tracking-wider">Enviar Pedido por WhatsApp</span>
-        </button>
-      </div>
+      <!-- BOTÓN FINAL A WHATSAPP -->
+      <button onclick="sendFinalWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1eb354] text-white py-3 rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all">
+        <i class="fa-brands fa-whatsapp text-sm"></i>
+        <span>Enviar Pedido por WhatsApp</span>
+      </button>
 
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- SCRIPT DE LÓGICA COMPLETA -->
   <script>
-    // Catálogo de Productos y Precios
-    const products = {
-      'perro-1': { name: "Perro Clásica", price: 3.5 },
-      'perro-2': { name: "Perro Caolis", price: 4.0 },
-      'perro-3': { name: "Perro Súper Caolis", price: 5.0 },
-      'perro-4': { name: "Choripán Clásico", price: 4.5 },
-      'perro-5': { name: "Choripán Súper Caolis", price: 6.0 },
-      'perro-6': { name: "Perro Polaco", price: 5.5 },
-      'perro-7': { name: "Perro Polaco Súper Caolis", price: 6.5 },
-      'perro-8': { name: "Perro Ternerito", price: 7.0 },
-      'perro-9': { name: "Perro Ternerito Súper Caolis", price: 8.0 },
-      'perro-10': { name: "Perro Tri-Mixto", price: 8.5 },
-      
-      'burg-1': { name: "Hamburguesa Clásica", price: 5.5 },
-      'burg-2': { name: "Hamburguesa Caolis", price: 6.0 },
-      'burg-3': { name: "Hamburguesa Súper Caolis", price: 6.5 },
-      'burg-4': { name: "Hamburguesa Extra", price: 7.0 },
-      'burg-5': { name: "Hamburguesa Caolis Combinada", price: 8.5 },
-      'burg-6': { name: "Hamburguesa Triple Caolis", price: 10.5 },
-      'burg-7': { name: "Hamburguesa Caolis Chuletón", price: 6.5 },
-      'burg-8': { name: "Hamburguesa Cheese Caolis", price: 7.5 },
-      
-      'pep-1': { name: "Pepito Normal", price: 12.5 },
-      'pep-2': { name: "Pepito Emperador", price: 15.5 },
-      'pep-3': { name: "Pepito Granjero", price: 7.0 },
-      
-      'adic-1': { name: "Adicional Nuggets", price: 6.0 },
-      'adic-2': { name: "Adicional Papas Fritas", price: 2.0 },
-      'adic-3': { name: "Un Adicional (Jamón/Queso/Papas)", price: 1.0 }
-    };
-
-    // Estado del Carrito: { id: cantidad }
     let cart = {};
+    let finalWhatsAppUrl = "";
 
     function updateQty(id, change) {
-      const current = cart[id] || 0;
-      const next = Math.max(0, current + change);
-      if (next === 0) {
-        delete cart[id];
-      } else {
-        cart[id] = next;
+      if (!cart[id]) cart[id] = 0;
+      cart[id] += change;
+      if (cart[id] <= 0) delete cart[id];
+
+      const qtyElement = document.getElementById(`qty-${id}`);
+      if (qtyElement) {
+        qtyElement.innerText = cart[id] || 0;
       }
 
-      // Actualizar UI en menú principal
-      const qtyEl = document.getElementById(`qty-${id}`);
-      if (qtyEl) qtyEl.innerText = cart[id] || 0;
-
-      // Actualizar Barra Flotante y Modal
-      renderTotals();
-      renderModalCart();
+      calculateTotal();
     }
 
-    function renderTotals() {
+    function calculateTotal() {
       let total = 0;
       let count = 0;
-      for (const id in cart) {
-        const qty = cart[id];
-        const price = products[id].price;
-        total += qty * price;
-        count += qty;
-      }
 
-      document.getElementById('barTotal').innerText = `$${total.toFixed(2)}`;
-      document.getElementById('barCount').innerText = count;
-      document.getElementById('modalTotal').innerText = `$${total.toFixed(2)}`;
-
-      const sendBtn = document.getElementById('sendWhatsappBtn');
-      if (count === 0) {
-        sendBtn.disabled = true;
-      } else {
-        sendBtn.disabled = false;
-      }
-    }
-
-    function renderModalCart() {
-      const container = document.getElementById('modalCartItems');
-      const emptyState = document.getElementById('emptyCartState');
-      container.innerHTML = '';
-
-      const keys = Object.keys(cart);
-      if (keys.length === 0) {
-        emptyState.classList.remove('hidden');
-        return;
-      }
-
-      emptyState.classList.add('hidden');
-
-      keys.forEach(id => {
-        const item = products[id];
-        const qty = cart[id];
-        const subtotal = (qty * item.price).toFixed(2);
-
-        const row = document.createElement('div');
-        row.className = "flex items-center justify-between bg-black/40 p-2.5 rounded-xl border border-white/5";
-        row.innerHTML = `
-          <div class="pr-2">
-            <h4 class="text-xs font-bold text-white">${item.name}</h4>
-            <span class="text-[10px] text-brand-main font-semibold">$${item.price.toFixed(2)} c/u</span>
-          </div>
-          <div class="flex items-center space-x-3">
-            <div class="flex items-center bg-black/60 rounded-lg p-1 border border-white/10 space-x-1.5">
-              <button onclick="updateQty('${id}', -1)" class="w-5 h-5 rounded bg-white/10 text-white flex items-center justify-center font-bold text-xs">-</button>
-              <span class="text-xs font-bold w-4 text-center">${qty}</span>
-              <button onclick="updateQty('${id}', 1)" class="w-5 h-5 rounded bg-brand-main text-black flex items-center justify-center font-bold text-xs">+</button>
-            </div>
-            <span class="text-xs font-extrabold text-white w-12 text-right">$${subtotal}</span>
-          </div>
-        `;
-        container.appendChild(row);
-      });
-    }
-
-    function openModal() {
-      document.getElementById('cartModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('cartModal').classList.add('hidden');
-    }
-
-    function scrollToCategory(id, btn) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-      
-      document.querySelectorAll('.cat-btn').forEach(b => {
-        b.classList.remove('bg-brand-main', 'text-black', 'shadow-md', 'shadow-brand-main/20');
-        b.classList.add('bg-brand-card', 'text-gray-300', 'border', 'border-brand-border');
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (btn) {
+          const id = btn.id.replace('qty-', '');
+          const qty = cart[id] || 0;
+          const price = parseFloat(card.getAttribute('data-price')) || 0;
+          
+          total += qty * price;
+          count += qty;
+        }
       });
 
-      btn.classList.remove('bg-brand-card', 'text-gray-300', 'border', 'border-brand-border');
-      btn.classList.add('bg-brand-main', 'text-black', 'shadow-md', 'shadow-brand-main/20');
+      document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
+      document.getElementById('modalTotalPrice').innerText = `$${total.toFixed(2)}`;
+      document.getElementById('cartCount').innerText = count;
     }
 
     function filterProducts() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('.product-card');
-      
-      cards.forEach(card => {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.product-card').forEach(card => {
         const name = card.getAttribute('data-name').toLowerCase();
-        if (name.includes(q)) {
+        if (name.includes(query)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -839,35 +709,110 @@
       });
     }
 
-    function sendWhatsApp() {
-      const name = document.getElementById('clientName').value.trim();
-      const notes = document.getElementById('clientNotes').value.trim();
+    function scrollToCategory(id, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-brand-main', 'text-white');
+        b.classList.add('bg-white', 'text-brand-text');
+      });
 
-      if (Object.keys(cart).length === 0) return;
+      btn.classList.remove('bg-white', 'text-brand-text');
+      btn.classList.add('bg-brand-main', 'text-white');
 
-      let msg = "*NUEVO PEDIDO - CAOLI'S BUR'S*\n\n";
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function openCartModal() {
+      if (Object.keys(cart).length === 0) {
+        alert("Por favor agrega al menos un producto a tu pedido.");
+        return;
+      }
+
+      const listContainer = document.getElementById('cartItemsList');
+      listContainer.innerHTML = '';
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (btn) {
+          const id = btn.id.replace('qty-', '');
+          const qty = cart[id] || 0;
+          if (qty > 0) {
+            const title = card.getAttribute('data-title');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const subtotal = qty * price;
+
+            const itemRow = document.createElement('div');
+            itemRow.className = "flex justify-between items-center py-1 font-medium";
+            itemRow.innerHTML = `
+              <span>${qty}x ${title}</span>
+              <span class="font-bold text-brand-accent">$${subtotal.toFixed(2)}</span>
+            `;
+            listContainer.appendChild(itemRow);
+          }
+        }
+      });
+
+      document.getElementById('cartModal').classList.remove('hidden');
+      document.getElementById('cartModal').classList.add('flex');
+    }
+
+    function closeCartModal() {
+      document.getElementById('cartModal').classList.add('hidden');
+      document.getElementById('cartModal').classList.remove('flex');
+    }
+
+    function proceedToInfoModal() {
+      const name = document.getElementById('clientName').value.trim() || 'Cliente';
+      const type = document.getElementById('deliveryType').value;
+      const notes = document.getElementById('clientNotes').value.trim() || 'Sin observaciones';
+
+      let msg = `*NUEVO PEDIDO - CAOLI'S BUR'S*\n`;
+      msg += `----------------------------------\n`;
+      msg += `👤 *Cliente:* ${name}\n`;
+      msg += `🛵 *Modalidad:* ${type}\n\n`;
+      msg += `📋 *Detalle:* \n`;
+
       let total = 0;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (btn) {
+          const id = btn.id.replace('qty-', '');
+          const qty = cart[id] || 0;
+          if (qty > 0) {
+            const title = card.getAttribute('data-title');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const subtotal = qty * price;
+            total += subtotal;
+            msg += `• ${qty}x ${title} ($${subtotal.toFixed(2)})\n`;
+          }
+        }
+      });
 
-      for (const id in cart) {
-        const item = products[id];
-        const qty = cart[id];
-        const sub = qty * item.price;
-        total += sub;
-        msg += `• ${qty}x ${item.name} ($${sub.toFixed(2)})\n`;
+      msg += `\n💵 *Total:* $${total.toFixed(2)}\n`;
+      msg += `📝 *Observaciones/Dirección:* ${notes}\n`;
+      msg += `----------------------------------`;
+
+      const phoneNumber = "584120000000"; // Reemplazar con el número oficial de Caoli's Bur's
+      finalWhatsAppUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+
+      closeCartModal();
+
+      document.getElementById('infoMenuModal').classList.remove('hidden');
+      document.getElementById('infoMenuModal').classList.add('flex');
+    }
+
+    function closeInfoModal() {
+      document.getElementById('infoMenuModal').classList.add('hidden');
+      document.getElementById('infoMenuModal').classList.remove('flex');
+    }
+
+    function sendFinalWhatsApp() {
+      if (finalWhatsAppUrl) {
+        window.open(finalWhatsAppUrl, '_blank');
       }
-
-      msg += `\n*TOTAL GENERAL: $${total.toFixed(2)}*\n`;
-
-      if (name) {
-        msg += `\n*Cliente:* ${name}`;
-      }
-      if (notes) {
-        msg += `\n*Observaciones:* ${notes}`;
-      }
-
-      const encoded = encodeURIComponent(msg);
-      // Número por defecto o configurable para el negocio
-      window.open(`https://wa.me/?text=${encoded}`, '_blank');
+      closeInfoModal();
     }
   </script>
 </body>
