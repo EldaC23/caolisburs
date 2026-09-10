@@ -46,7 +46,7 @@
       scrollbar-width: none;
     }
 
-    /* Fondo con degradado sutil para evitar saturación en OLED */
+    /* Fondo con degradado sutil */
     body {
       background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
       font-family: 'Poppins', sans-serif;
@@ -79,7 +79,7 @@
     /* Glow pulse CTA */
     @keyframes glowPulse {
       0%, 100% { box-shadow: 0 4px 18px rgba(185, 28, 28, 0.4); }
-      50% { box-shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
+      50% { shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
     }
     .cta-glow {
       animation: glowPulse 2.2s ease-in-out infinite;
@@ -114,7 +114,7 @@
         </div>
       </div>
 
-      <!-- Info Operativa (Flotante semi-transparente) -->
+      <!-- Info Operativa (Flotante) -->
       <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-amber-100 font-medium bg-black/25 backdrop-blur-sm p-2 rounded-xl border border-white/10 shadow-sm">
         <div class="flex items-center space-x-1.5">
           <i class="fa-solid fa-motorcycle text-amber-400 text-xs"></i>
@@ -126,7 +126,7 @@
         </div>
       </div>
 
-      <!-- Redes Sociales (Integradas con fondo semi-transparente) -->
+      <!-- Redes Sociales -->
       <div class="flex items-center justify-center space-x-4 mb-3 text-amber-100 text-xs bg-black/25 backdrop-blur-sm py-1.5 px-3 rounded-full border border-white/10">
         <a href="#" class="hover:text-amber-300 transition-colors flex items-center space-x-1"><i class="fa-brands fa-instagram text-sm text-amber-400"></i> <span>@caolisburs</span></a>
         <span class="text-amber-300/50">•</span>
@@ -482,6 +482,13 @@
       </div>
     </section>
 
+    <!-- CATEGORÍA 4: ADICIONALES -->
+    <section id="adicionales" class="category-section scroll-mt-36">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Adicionales</h2>
+      </div>
+    </section>
+
   </main>
 
   <!-- BANNER INFERIOR DE TOTAL Y PEDIDO -->
@@ -529,8 +536,142 @@
     </div>
   </div>
 
-</body>
-</html>
+  <!-- LÓGICA JAVASCRIPT RESTAURADA E INTEGRADA -->
+  <script>
+    // Objeto Estado del Carrito
+    const cart = {};
+
+    // 1. Navegación por categorías suave
+    function scrollToCategory(id, btnElement) {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Actualizar estilo activo en botones de categoría
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-brand-main', 'text-white', 'shadow-md');
+        btn.classList.add('bg-white', 'text-brand-text', 'border', 'border-brand-border');
+      });
+
+      btnElement.classList.remove('bg-white', 'text-brand-text', 'border', 'border-brand-border');
+      btnElement.classList.add('bg-brand-main', 'text-white', 'shadow-md');
+    }
+
+    // 2. Control de cantidades e ítems
+    function updateQty(id, delta) {
+      const qtySpan = document.getElementById(`qty-${id}`);
+      if (!qtySpan) return;
+
+      let currentQty = parseInt(qtySpan.innerText) || 0;
+      currentQty = Math.max(0, currentQty + delta);
+      qtySpan.innerText = currentQty;
+
+      // Obtener datos del producto desde la tarjeta contenedora
+      const card = qtySpan.closest('.product-card');
+      if (!card) return;
+
+      const title = card.getAttribute('data-title');
+      const price = parseFloat(card.getAttribute('data-price'));
+
+      if (currentQty > 0) {
+        cart[id] = { title, price, qty: currentQty };
+      } else {
+        delete cart[id];
+      }
+
+      calculateTotal();
+    }
+
+    // 3. Cálculo de Total
+    function calculateTotal() {
+      let total = 0;
+      for (const key in cart) {
+        total += cart[key].price * cart[key].qty;
+      }
+
+      const formattedTotal = `$${total.toFixed(2)}`;
+      document.getElementById('bottom-total').innerText = formattedTotal;
+      document.getElementById('modalTotal').innerText = formattedTotal;
+    }
+
+    // 4. Control del Modal de Pedido
+    function openOrderModal() {
+      const modalList = document.getElementById('modalItemsList');
+      modalList.innerHTML = '';
+
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        modalList.innerHTML = `<p class="text-center text-xs text-gray-500 py-4 font-medium">Aún no has agregado productos a tu pedido.</p>`;
+      } else {
+        keys.forEach(key => {
+          const item = cart[key];
+          const subtotal = (item.price * item.qty).toFixed(2);
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between bg-white p-2.5 rounded-lg border border-brand-border/40 text-xs';
+          row.innerHTML = `
+            <div>
+              <p class="font-bold text-brand-text">${item.title}</p>
+              <p class="text-[10px] text-gray-500">${item.qty} x $${item.price.toFixed(2)}</p>
+            </div>
+            <span class="font-black text-brand-accent">$${subtotal}</span>
+          `;
+          modalList.appendChild(row);
+        });
+      }
+
+      document.getElementById('orderModal').classList.remove('hidden');
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').classList.add('hidden');
+    }
+
+    // 5. Envío de Pedido a WhatsApp
+    function sendWhatsAppOrder() {
+      const keys = Object.keys(cart);
+      if (keys.length === 0) {
+        alert('Por favor agrega al menos un producto antes de enviar tu pedido.');
+        return;
+      }
+
+      let message = "¡Hola! Quisiera realizar el siguiente pedido en *Caoli's Bur's*:\n\n";
+      let total = 0;
+
+      keys.forEach(key => {
+        const item = cart[key];
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+        message += `• ${item.qty}x ${item.title} - $${subtotal.toFixed(2)}\n`;
+      });
+
+      message += `\n*Total Estimado:* $${total.toFixed(2)}\n`;
+      message += `_(Nota: Los precios no incluyen delivery.)_\n\n`;
+      message += `¡Quedo a la espera de su confirmación!`;
+
+      const encodedMessage = encodeURIComponent(message);
+      // Reemplazar número según sea necesario
+      window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+    }
+
+    // 6. Buscador / Filtro de productos
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+
+      cards.forEach(card => {
+        const nameData = card.getAttribute('data-name') || '';
+        const titleData = card.getAttribute('data-title') || '';
+        const fullText = (nameData + ' ' + titleData).toLowerCase();
+
+        if (fullText.includes(query)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
   </script>
 </body>
 </html>
