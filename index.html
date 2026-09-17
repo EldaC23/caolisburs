@@ -6,13 +6,11 @@
   <title>Caoli's Bur's - Menú Digital Interactivo</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts -->
+  <!-- Google Fonts (solo los pesos que realmente se usan) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <script>
     tailwind.config = {
       theme: {
@@ -128,6 +126,14 @@ background-attachment: fixed;
     html {
       scroll-behavior: smooth;
     }
+
+    /* Icono WhatsApp inline (reemplaza FontAwesome) */
+    .icon-wa {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.125em;
+    }
   </style>
 </head>
 <body class="pb-32 bg-[#A01F0B]">
@@ -140,7 +146,7 @@ background-attachment: fixed;
         <div class="flex items-center space-x-3">
           <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-white p-0.5 overflow-hidden shadow-md flex-shrink-0">
             <div class="w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex flex-col items-center justify-center text-center p-1">
-              <i class="fa-solid fa-cow text-amber-200 text-xs"></i>
+              <span class="text-xs leading-none" aria-hidden="true">🐮</span>
               <span class="text-[7px] font-black leading-none text-white tracking-tighter">CAOLI'S</span>
             </div>
           </div>
@@ -156,11 +162,11 @@ background-attachment: fixed;
       <!-- Info Operativa -->
       <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-amber-100 font-medium bg-black/25 backdrop-blur-sm p-2 rounded-xl border border-white/10 shadow-sm">
         <div class="flex items-center space-x-1.5 justify-center">
-          <i class="fa-solid fa-motorcycle text-brand-main text-xs"></i>
+          <span aria-hidden="true">🛵</span>
           <span>Delivery & Pick-up</span>
         </div>
         <div class="flex items-center space-x-1.5 justify-center">
-          <i class="fa-solid fa-location-dot text-brand-main text-xs"></i>
+          <span aria-hidden="true">📍</span>
           <span>@caolisburs</span>
         </div>
       </div>
@@ -174,7 +180,7 @@ background-attachment: fixed;
           placeholder="¿Qué se te antoja hoy? Buscar..." 
           class="w-full bg-white border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-brand-text placeholder-gray-400 focus:outline-none focus:border-brand-main transition-all shadow-sm"
         >
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-400 text-xs"></i>
+        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs" aria-hidden="true">🔍</span>
       </div>
     </div>
 
@@ -205,7 +211,7 @@ background-attachment: fixed;
       <div class="mb-3">
         <h2 class="brush-title text-sm">Perros Calientes</h2>
         <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
@@ -377,7 +383,7 @@ background-attachment: fixed;
       <div class="mb-3">
         <h2 class="brush-title text-sm">Hamburguesas</h2>
         <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
@@ -509,7 +515,7 @@ background-attachment: fixed;
       <div class="mb-3">
         <h2 class="brush-title text-sm">Pepitos</h2>
         <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
-          <i class="fa-solid fa-circle-info text-brand-main mr-1"></i> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
         </p>
       </div>
 
@@ -596,19 +602,19 @@ background-attachment: fixed;
         <p class="text-[12px] text-amber-200/70 italic leading-none mt-0.5">*No incluye delivery.</p>
       </div>
       <button onclick="openCartModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-md cta-glow flex items-center space-x-2 text-xs transition-all">
-        <i class="fa-solid fa-cart-shopping"></i>
+        <span aria-hidden="true">🛒</span>
         <span>Ver Mi Pedido</span>
         <span id="cartCount" class="bg-white text-brand-accent text-[10px] px-1.5 py-0.5 rounded-full font-black">0</span>
       </button>
     </div>
   </div>
 
-  <!-- MODAL 1: RESUMEN DEL PEDIDO -->
+  <!-- MODAL: RESUMEN DEL PEDIDO -->
   <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-end sm:items-center justify-center p-0 sm:p-4 z-50 backdrop-blur-sm">
     <div class="bg-brand-bg w-full max-w-md rounded-t-2xl sm:rounded-2xl border border-brand-border p-5 shadow-2xl max-h-[85vh] flex flex-col">
       <div class="flex items-center justify-between pb-3 border-b border-brand-border">
         <h3 class="font-extrabold text-base text-brand-text flex items-center gap-2">
-          <i class="fa-solid fa-receipt text-brand-main"></i> Resumen de tu Pedido
+          <span aria-hidden="true">🧾</span> Resumen de tu Pedido
         </h3>
         <button onclick="closeCartModal()" class="text-gray-400 hover:text-brand-text font-bold text-lg">&times;</button>
       </div>
@@ -644,56 +650,19 @@ background-attachment: fixed;
           <p class="text-[10px] text-brand-text font-bold uppercase">Total estimado</p>
           <p id="modalTotalPrice" class="text-lg font-extrabold text-brand-accent">$0.00</p>
         </div>
-        <p class="text-[12px] text-brand-text italic text-right mt-1">*No incluye delivery.</p>
-        <button onclick="proceedToInfoModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
-          <span>Continuar a WhatsApp</span>
-          <i class="fa-solid fa-arrow-right"></i>
+        <button onclick="sendOrderToWhatsApp()" class="bg-[#25D366] hover:bg-[#1eb354] text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
+          <svg class="icon-wa" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.001 3C9.38 3 4 8.38 4 15.001c0 2.386.679 4.66 1.958 6.634L4 29l7.53-1.928a11.94 11.94 0 0 0 4.47.86h.005C22.62 27.932 28 22.552 28 15.93 28 9.31 22.62 3.93 16.001 3zm6.72 17.02c-.283.795-1.63 1.516-2.246 1.596-.573.075-1.28.107-2.066-.13-.476-.144-1.09-.34-1.874-.665-3.303-1.427-5.457-4.744-5.62-4.966-.164-.222-1.34-1.783-1.34-3.402 0-1.62.85-2.417 1.15-2.75.3-.334.657-.417.876-.417.219 0 .438.002.629.011.202.01.474-.077.74.564.283.681.965 2.352 1.05 2.523.083.17.138.37.028.593-.11.222-.165.36-.328.554-.164.194-.345.433-.492.582-.164.166-.334.346-.144.68.191.334.848 1.4 1.82 2.267 1.25 1.115 2.303 1.46 2.638 1.624.334.164.53.138.727-.083.196-.222.845-.986 1.07-1.324.222-.339.446-.283.75-.17.303.111 1.926.909 2.257 1.074.33.166.55.249.628.389.083.14.083.79-.2 1.585z"/>
+          </svg>
+          <span>Enviar Pedido por WhatsApp</span>
         </button>
       </div>
-    </div>
-  </div>
-
-  <!-- MODAL 2: AVISO SOBRIO & CONFIRMACIÓN FINAL -->
-  <div id="infoMenuModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-[60] backdrop-blur-sm">
-    <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center border-2 border-brand-main shadow-2xl relative text-brand-text">
-      
-      <button onclick="closeInfoModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 font-bold text-lg">&times;</button>
-
-      <div class="w-12 h-12 bg-amber-100 text-brand-main rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">
-        <i class="fa-solid fa-check"></i>
-      </div>
-
-      <h4 class="text-base font-extrabold text-brand-text mb-1">¡Tu pedido está listo!</h4>
-      <p class="text-xs text-gray-600 mb-4">Serás redirigido a WhatsApp para enviar el detalle de tu orden directamente al local.</p>
-
-      <!-- AVISO COMERCIAL SOBRIO -->
-      <div class="bg-[#f5ede2] p-4 rounded-xl border border-brand-border mb-5 text-left shadow-sm">
-        <p class="text-xs font-extrabold text-brand-text mb-1 flex items-center gap-1.5">
-          <i class="fa-solid fa-lightbulb text-brand-main"></i> ¿Te gustaría un menú interactivo para tu negocio?
-        </p>
-        <p class="text-[11px] text-gray-600 leading-relaxed mb-3">
-          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, pago único, sin comisiones por venta.
-        </p>
-        <a href="https://wa.me/584128995687?text=Hola!%20Me%20interesa%20informaci%C3%B3n%20sobre%20un%20men%C3%BA%20interactivo%20para%20mi%20negocio" 
-           target="_blank" 
-           class="block text-center text-xs bg-brand-main hover:bg-brand-dark text-white py-2 rounded-lg font-bold transition-all shadow-sm">
-          Solicitar Información
-        </a>
-      </div>
-
-      <!-- BOTÓN FINAL A WHATSAPP -->
-      <button onclick="sendFinalWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1eb354] text-white py-3 rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all">
-        <i class="fa-brands fa-whatsapp text-sm"></i>
-        <span>Enviar Pedido por WhatsApp</span>
-      </button>
-
     </div>
   </div>
 
   <!-- SCRIPT DE LÓGICA COMPLETA -->
   <script>
     let cart = {};
-    let finalWhatsAppUrl = "";
 
     function updateQty(id, change) {
       if (!cart[id]) cart[id] = 0;
@@ -815,7 +784,7 @@ background-attachment: fixed;
       document.getElementById('cartModal').classList.remove('flex');
     }
 
-    function proceedToInfoModal() {
+    function sendOrderToWhatsApp() {
       if (Object.keys(cart).length === 0) {
         alert("Por favor agrega al menos un producto a tu pedido.");
         return;
@@ -852,24 +821,10 @@ background-attachment: fixed;
       msg += `----------------------------------`;
 
       const phoneNumber = "584128995687"; // Reemplazar con el número oficial de Caoli's Bur's
-      finalWhatsAppUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
 
+      window.open(whatsappUrl, '_blank');
       closeCartModal();
-
-      document.getElementById('infoMenuModal').classList.remove('hidden');
-      document.getElementById('infoMenuModal').classList.add('flex');
-    }
-
-    function closeInfoModal() {
-      document.getElementById('infoMenuModal').classList.add('hidden');
-      document.getElementById('infoMenuModal').classList.remove('flex');
-    }
-
-    function sendFinalWhatsApp() {
-      if (finalWhatsAppUrl) {
-        window.open(finalWhatsAppUrl, '_blank');
-      }
-      closeInfoModal();
     }
   </script>
 </body>
