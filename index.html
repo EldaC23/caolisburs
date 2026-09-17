@@ -645,11 +645,48 @@ background-attachment: fixed;
           <p id="modalTotalPrice" class="text-lg font-extrabold text-brand-accent">$0.00</p>
         </div>
         <p class="text-[12px] text-brand-text italic text-right mt-1">*No incluye delivery.</p>
-       <button onclick="sendFinalWhatsApp()" class="...">
+        <button onclick="proceedToInfoModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
           <span>Continuar a WhatsApp</span>
           <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: AVISO SOBRIO & CONFIRMACIÓN FINAL -->
+  <div id="infoMenuModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-[60] backdrop-blur-sm">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center border-2 border-brand-main shadow-2xl relative text-brand-text">
+      
+      <button onclick="closeInfoModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 font-bold text-lg">&times;</button>
+
+      <div class="w-12 h-12 bg-amber-100 text-brand-main rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-xl">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <h4 class="text-base font-extrabold text-brand-text mb-1">¡Tu pedido está listo!</h4>
+      <p class="text-xs text-gray-600 mb-4">Serás redirigido a WhatsApp para enviar el detalle de tu orden directamente al local.</p>
+
+      <!-- AVISO COMERCIAL SOBRIO -->
+      <div class="bg-[#f5ede2] p-4 rounded-xl border border-brand-border mb-5 text-left shadow-sm">
+        <p class="text-xs font-extrabold text-brand-text mb-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-lightbulb text-brand-main"></i> ¿Te gustaría un menú interactivo para tu negocio?
+        </p>
+        <p class="text-[11px] text-gray-600 leading-relaxed mb-3">
+          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, pago único, sin comisiones por venta.
+        </p>
+        <a href="https://wa.me/584128995687?text=Hola!%20Me%20interesa%20informaci%C3%B3n%20sobre%20un%20men%C3%BA%20interactivo%20para%20mi%20negocio" 
+           target="_blank" 
+           class="block text-center text-xs bg-brand-main hover:bg-brand-dark text-white py-2 rounded-lg font-bold transition-all shadow-sm">
+          Solicitar Información
+        </a>
+      </div>
+
+      <!-- BOTÓN FINAL A WHATSAPP -->
+      <button onclick="sendFinalWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1eb354] text-white py-3 rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-2 transition-all">
+        <i class="fa-brands fa-whatsapp text-sm"></i>
+        <span>Enviar Pedido por WhatsApp</span>
+      </button>
+
     </div>
   </div>
 
