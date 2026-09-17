@@ -593,7 +593,7 @@ background-attachment: fixed;
       <div>
         <p class="text-[10px] uppercase font-bold text-amber-200 tracking-wider">Total Estimado</p>
         <p id="totalPrice" class="text-xl font-extrabold text-white">$0.00</p>
-        <p class="text-[12px] text-amber-200/70 italic leading-none mt-0.5">*Los precios no incluyen delivery.</p>
+        <p class="text-[12px] text-amber-200/70 italic leading-none mt-0.5">*No incluye delivery.</p>
       </div>
       <button onclick="openCartModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-md cta-glow flex items-center space-x-2 text-xs transition-all">
         <i class="fa-solid fa-cart-shopping"></i>
@@ -634,17 +634,17 @@ background-attachment: fixed;
         </div>
 
         <div>
-          <label class="block font-bold text-brand-text mb-1">Dirección / Observaciones:</label>
-          <input type="text" id="clientNotes" placeholder="Ej. Urb. Las Delicias, sin cebolla..." class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+          <label class="block font-bold text-brand-text mb-1">Observaciones:</label>
+          <input type="text" id="clientNotes" placeholder="Ej. Sin cebolla, adicional de..." class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
         </div>
       </div>
 
       <div class="pt-4 mt-2 border-t border-brand-border flex items-center justify-between">
         <div>
-          <p class="text-[10px] text-brand-text font-bold uppercase">Total a Pagar</p>
+          <p class="text-[10px] text-brand-text font-bold uppercase">Total estimador</p>
           <p id="modalTotalPrice" class="text-lg font-extrabold text-brand-accent">$0.00</p>
         </div>
-        <p class="text-[12px] text-brand-text italic text-right mt-1">*Los precios no incluyen delivery.</p>
+        <p class="text-[12px] text-brand-text italic text-right mt-1">*No incluye delivery.</p>
         <button onclick="proceedToInfoModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
           <span>Continuar a WhatsApp</span>
           <i class="fa-solid fa-arrow-right"></i>
@@ -672,7 +672,7 @@ background-attachment: fixed;
           <i class="fa-solid fa-lightbulb text-brand-main"></i> ¿Te gustaría un menú interactivo para tu negocio?
         </p>
         <p class="text-[11px] text-gray-600 leading-relaxed mb-3">
-          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, sin comisiones por venta.
+          Ofrece a tus clientes un catálogo digital optimizado con recepción de pedidos directa a tu WhatsApp, pago único, sin comisiones por venta.
         </p>
         <a href="https://wa.me/584128995687?text=Hola!%20Me%20interesa%20informaci%C3%B3n%20sobre%20un%20men%C3%BA%20interactivo%20para%20mi%20negocio" 
            target="_blank" 
@@ -851,7 +851,7 @@ background-attachment: fixed;
       msg += `📝 *Observaciones/Dirección:* ${notes}\n`;
       msg += `----------------------------------`;
 
-      const phoneNumber = "584120000000"; // Reemplazar con el número oficial de Caoli's Bur's
+      const phoneNumber = "584128995687"; // Reemplazar con el número oficial de Caoli's Bur's
       finalWhatsAppUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
 
       closeCartModal();
