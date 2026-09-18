@@ -1,1 +1,1308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Caoli's Bur's - Menú Digital Interactivo</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (solo los pesos que realmente se usan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              main: '#EAA814',      /* Mostaza Ajustado */
+              dark: '#c78e0f',      /* Mostaza Oscuro */
+              accent: '#b91c1c',    /* Rojo */
+              bg: '#f5ede2',        /* Fondo Claro Warm */
+              card: '#e8dccb',      /* Tarjeta Clara */
+              border: '#dfcfb9',    /* Borde Claro */
+              text: '#4a2c11'       /* Texto Marrón Oscuro */
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar Hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+/* Ajuste de altura compacta */
+    div[class*="product-card"] {
+      padding-top: 0.35rem !important;
+      padding-bottom: 0.35rem !important;
+      align-items: stretch !important;
+    }
+
+    /* Reducir espacio entre Nombre y Descripción */
+    div[class*="product-card"] h3 {
+      line-height: 1.1 !important;
+      margin-bottom: 0.15rem !important;
+    }
+
+    /* Reducir botones - / + */
+    div[class*="product-card"] button {
+      width: 1.25rem !important;
+      height: 1.25rem !important;
+      min-width: 1.25rem !important;
+      min-height: 1.25rem !important;
+      padding: 0 !important;
+      font-size: 11px !important;
+    }
+
+    /* Ajustar el bloque derecho (Precio arriba, Botones abajo) */
+    div[class*="product-card"] .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 0.1rem !important;
+      margin-bottom: 0 !important;
+    }
+    
+    /* Centrar el precio sobre el selector de botones */
+    div[class*="product-card"] .text-brand-accent {
+      width: 100% !important;
+      text-align: center !important;
+      display: block !important;
+    }
+
+    .category-section {
+      scroll-margin-top: 14.5rem !important; /* Equivale exacto a scroll-mt-58 */
+    }
+    /* Fondo unificado en #A01F0B */
+    body {
+      background: linear-gradient(to bottom, #8B1808, #A01F0B, #6E0E02);
+background-attachment: fixed;
+      font-family: 'Poppins', sans-serif;
+      color: #4a2c11;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Brush title technique */
+    .brush-title {
+      position: relative;
+      display: inline-block;
+      padding: 4px 18px;
+      color: #ffffff;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .brush-title::before {
+      content: "";
+      position: absolute;
+      inset: -2px -8px;
+      background: linear-gradient(100deg, #EAA814, #c78e0f);
+      transform: rotate(-1.5deg) skewX(-6deg);
+      border-radius: 6px 14px 6px 14px;
+      z-index: -1;
+      opacity: 0.98;
+      box-shadow: 0 4px 12px rgba(234, 168, 20, 0.25);
+    }
+
+    /* Glow pulse CTA */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 4px 18px rgba(185, 28, 28, 0.4); }
+      50% { box-shadow: 0 4px 28px rgba(185, 28, 28, 0.7); }
+    }
+    .cta-glow {
+      animation: glowPulse 2.2s ease-in-out infinite;
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Icono WhatsApp inline (reemplaza FontAwesome) */
+    .icon-wa {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.125em;
+    }
+
+    .mod-chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 999px;
+      border: 1px solid #dfcfb9; background: white;
+      font-size: 10px; font-weight: 600; color: #4a2c11;
+      cursor: pointer; transition: all .15s;
+    }
+    .mod-chip.is-active {
+      background: #EAA814; border-color: #EAA814; color: white;
+    }
+    .protein-btn {
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid #dfcfb9; background: white;
+      font-size: 10px; font-weight: 700; color: #4a2c11;
+      cursor: pointer; transition: all .15s;
+    }
+    .protein-btn.is-active {
+      background: #b91c1c; border-color: #b91c1c; color: white;
+    }
+    .mod-toggle .mod-arrow { display: inline-block; transition: transform .2s; }
+    .mod-toggle.is-open .mod-arrow { transform: rotate(180deg); }
+  </style>
+</head>
+<body class="pb-32 bg-[#A01F0B]">
+
+  <!-- HEADER FIJO (Integrado en #A01F0B) -->
+  <header class="sticky top-0 z-30 bg-[#A01F0B] border-b border-brand-border/20 shadow-md">
+    <div class="max-w-md mx-auto px-4 pt-4 pb-3">
+      <!-- Branding & Title -->
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-full border-2 border-brand-main bg-white p-0.5 overflow-hidden shadow-md flex-shrink-0">
+            <div class="w-full h-full bg-gradient-to-br from-amber-600 to-amber-800 rounded-full flex flex-col items-center justify-center text-center p-1">
+              <span class="text-xs leading-none" aria-hidden="true">🐮</span>
+              <span class="text-[7px] font-black leading-none text-white tracking-tighter">CAOLI'S</span>
+            </div>
+          </div>
+          <div>
+            <h1 class="text-xl font-black tracking-wide text-white uppercase leading-tight drop-shadow-sm">
+              CAOLI'S BUR'S
+            </h1>
+            <p class="text-xs font-semibold text-amber-400 tracking-wider uppercase">SINCE 1998 • SABOR TRADICIONAL</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Operativa -->
+      <div class="grid grid-cols-2 gap-1.5 my-2.5 text-[11px] text-amber-100 font-medium bg-black/25 backdrop-blur-sm p-2 rounded-xl border border-white/10 shadow-sm">
+        <div class="flex items-center space-x-1.5 justify-center">
+          <span aria-hidden="true">🛵</span>
+          <span>Delivery & Pick-up</span>
+        </div>
+        <div class="flex items-center space-x-1.5 justify-center">
+          <span aria-hidden="true">📍</span>
+          <span>@caolisburs</span>
+        </div>
+      </div>
+
+      <!-- Buscador -->
+      <div class="relative">
+        <input 
+          type="text" 
+          id="searchInput"
+          oninput="filterProducts()"
+          placeholder="¿Qué se te antoja hoy? Buscar..." 
+          class="w-full bg-white border border-brand-border rounded-full py-2 pl-9 pr-4 text-xs text-brand-text placeholder-gray-400 focus:outline-none focus:border-brand-main transition-all shadow-sm"
+        >
+        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-xs" aria-hidden="true">🔍</span>
+      </div>
+    </div>
+
+    <!-- Navegación de Categorías Horizontal -->
+    <div class="border-t border-brand-border/20 bg-[#A01F0B]/95 backdrop-blur-md">
+      <div class="max-w-md mx-auto px-3 py-2 flex space-x-2 overflow-x-auto no-scrollbar" id="categoryNav">
+        <button onclick="scrollToCategory('perros', this)" class="cat-btn active whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-main text-white shadow-md shadow-brand-main/20">
+          🌭 Perros Calientes
+        </button>
+        <button onclick="scrollToCategory('hamburguesas', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🍔 Hamburguesas
+        </button>
+        <button onclick="scrollToCategory('pepitos', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🥖 Pepitos
+        </button>
+        <button onclick="scrollToCategory('adicionales', this)" class="cat-btn whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white text-brand-text border border-brand-border hover:border-brand-main/50">
+          🍟 Adicionales
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-md mx-auto px-4 pt-6 space-y-8">
+
+    <!-- CATEGORÍA 1: PERROS CALIENTES -->
+    <section id="perros" class="category-section scroll-mt-64">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Perros Calientes</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
+
+      <div class="space-y-2.5" id="list-perros">
+        <!-- Item 1 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="clasica perrito caliente salchicha" data-price="3.5" data-title="P. Clásica">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha tradicional, vegetales y salsas.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$3.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-1">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-1" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-1" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-1" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-1" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-1" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="caolis salchicha jamon queso tocineta" data-price="4.0" data-title="P. Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha + 1 adicional a elegir (Jamón, Queso o Tocineta).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$4.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-2">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-2" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-2" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-2" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-2" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-2" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="super caolis salchicha jamon queso tocineta" data-price="5.0" data-title="P. Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-3">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-3" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-3" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-3" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-3" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-3" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="choripan clasico chorizo ajo ahumado carupanero" data-price="4.5" data-title="Choripán Clásico">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Choripán Clásico</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo a elección: Ajo-Ahumado o Carupanero.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$4.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-4">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-4" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-4" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-4" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-4" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-4" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="choripan super caolis jamon queso tocineta" data-price="6.0" data-title="Choripán Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Choripán Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chorizo (Ajo/Carupanero) + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-5">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-5" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-5" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-5" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-5" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-5" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="polaco salchicha polaca" data-price="5.5" data-title="P. Polaco">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Polaco</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Auténtica Salchicha Polaca premium.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-6">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-6" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-6" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-6" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-6" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-6" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="polaco super caolis salchicha polaca jamon queso tocineta" data-price="6.5" data-title="P. Polaco Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Polaco Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Salchicha Polaca + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-7">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-7" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-7" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-7" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-7" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-7" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="ternerito lomito pollo" data-price="7.0" data-title="Ternerito">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Ternerito</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Trozos jugosos de Lomito o Pollo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-8">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-8" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-8" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-8" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-8" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-8" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 9 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="ternerito super caolis lomito pollo jamon queso tocineta" data-price="8.0" data-title="Ternerito Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Ternerito Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito o Pollo + Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-9', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-9" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-9', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-9">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-9" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-9" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-9" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-9" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-9" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 10 -->
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="tri mixto lomito pollo jamon queso tocineta" data-price="8.5" data-title="P. Tri-Mixto">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Tri-Mixto</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito, Pollo, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('perro-10', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-perro-10" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('perro-10', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="perro-10">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-perro-10" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="perro-10" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="perro-10" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="perro-10" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="perro-10" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA 2: HAMBURGUESAS -->
+    <section id="hamburguesas" class="category-section scroll-mt-64">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Hamburguesas</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
+
+      <div class="space-y-2.5">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="clasica carne pollo 110gr" data-price="5.5" data-title="H. Clásica">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Clásica</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo (110gr).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$5.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-1">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-1" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-1" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-1" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-1" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-1" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="caolis carne pollo 110gr jamon queso tocineta" data-price="6.0" data-title="H. Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne/Pollo 110gr + 1 adicional (Jamón, Queso o Tocineta).</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-2">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-2" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-2" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-2" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-2" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-2" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="super caolis carne pollo 110gr jamon queso tocineta" data-price="6.5" data-title="H. Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo 110gr, Jamón, Queso y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-3', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-3" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-3', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-3">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-3" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-3" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-3" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-3" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-3" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="extra carne pollo queso jamon tocineta huevo" data-price="7.0" data-title="H. Extra">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Extra</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne o Pollo, Queso, Jamón, Tocineta y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-4', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-4" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-4', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-4">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-4" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-4" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-4" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-4" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-4" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="caolis combinada carne pollo doble jamon tocineta huevo queso" data-price="8.5" data-title="H. Caolis Combinada">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis Combinada</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Doble + Jamón, Tocineta, Huevo y Queso.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-5', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-5" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-5', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-5">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-5" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-5" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-5" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-5" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-5" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="triple caolis carne pollo chuleta jamon queso tocineta huevo" data-price="10.5" data-title="H. Triple Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Triple Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo, Chuleta + Jamón, Queso, Tocineta y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$10.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-6', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-6" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-6', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-6">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-6" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-6" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-6" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-6" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-6" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="caolis chuleton chuleta ahumada queso huevo" data-price="6.5" data-title="H. Caolis Chuletón">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Caolis Chuletón</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Chuleta Ahumada, Queso y Huevo.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$6.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-7', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-7" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-7', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-7">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-7" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-7" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-7" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-7" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-7" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="cheese caolis carne rellena queso cheddar tocineta" data-price="7.5" data-title="H. Cheese Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Cheese Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne Rellena de Queso Cheddar + Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$7.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main-border space-x-2 shadow-sm">
+              <button onclick="updateQty('burg-8', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-burg-8" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('burg-8', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="burg-8">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-burg-8" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="burg-8" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="burg-8" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="burg-8" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="burg-8" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA 3: PEPITOS -->
+    <section id="pepitos" class="category-section scroll-mt-64">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Pepitos</h2>
+        <p class="text-[11px] text-gray-800 mt-2 bg-white/90 border-l-2 border-brand-main p-2 rounded-r-lg font-medium shadow-sm">
+          <span aria-hidden="true">ℹ️</span> Incluyen: lechuga, tomate ensalada, cebolla, papas cabello de ángel y salsas.
+        </p>
+      </div>
+
+      <div class="space-y-2.5">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="pepito carne pollo lomito mixtos" data-price="8.0" data-title="Pep. Tradicional">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Pepito Tradicional</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Carne, Pollo o Mixto con vegetales y queso fundido.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$8.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('pep-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-pep-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('pep-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="pep-1">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-pep-1" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-1" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="pep-1" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="pep-1" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="pep-1" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm transition-all" data-name="pepito super caolis mixto jamon queso tocineta" data-price="9.5" data-title="Pep. Súper Caolis">
+          <div class="flex items-center justify-between"><div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Pepito Súper Caolis</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Lomito/Pollo + Jamón, Queso rallado y Tocineta.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$9.5</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('pep-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-pep-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('pep-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div></div>
+          <button type="button" class="mod-toggle mt-2 text-[11px] font-bold text-brand-main flex items-center gap-1" data-mod-toggle="pep-2">
+            Personalizar <span class="mod-arrow">⌄</span>
+          </button>
+          <div id="mods-pep-2" class="hidden mt-2 pt-2 border-t border-brand-border/40">
+            <div class="flex flex-wrap gap-1.5 mb-2">
+              <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="cebolla"> Sin cebolla</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="papas"> Sin papas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="tomate"> Sin tomate</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="salsaroja"> Sin salsas rojas</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="salsacaolis"> Sin salsa Caoli's</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="lechuga"> Sin lechuga</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="mayo"> Sin mayonesa</label>
+      <label class="mod-chip"><input type="checkbox" class="hidden" data-product="pep-2" data-mod="solopapas"> Solo papas</label>
+            </div>
+            <div class="flex gap-1.5">
+              <button type="button" class="protein-btn" data-product="pep-2" data-protein="carne">Carne</button>
+              <button type="button" class="protein-btn" data-product="pep-2" data-protein="pollo">Pollo</button>
+              <button type="button" class="protein-btn" data-product="pep-2" data-protein="mixto">Mixto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORÍA 4: ADICIONALES -->
+    <section id="adicionales" class="category-section scroll-mt-52">
+      <div class="mb-3">
+        <h2 class="brush-title text-sm">Adicionales</h2>
+      </div>
+
+      <div class="space-y-2.5">
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="papas fritas racion" data-price="3.0" data-title="Ración de Papas Fritas">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Ración de Papas Fritas</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Papas crujientes recién hechas.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$3.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('adic-1', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adic-1" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adic-1', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card bg-brand-card p-3 rounded-xl border-2 border-brand-main shadow-sm flex items-center justify-between transition-all" data-name="extra de queso tocineta jamon" data-price="1.0" data-title="Extra Queso / Tocineta / Jamón">
+          <div class="pr-2">
+            <h3 class="font-bold text-sm text-brand-text">Extra Queso / Tocineta / Jamón</h3>
+            <p class="text-[11px] text-gray-600 leading-tight mt-0.5">Añade sabor extra a cualquiera de tus platos.</p>
+          </div>
+          <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+            <span class="text-sm font-extrabold text-brand-accent">$1.0</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border-2 border-brand-main space-x-2 shadow-sm">
+              <button onclick="updateQty('adic-2', -1)" class="w-6 h-6 rounded-md bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span id="qty-adic-2" class="text-xs font-bold w-4 text-center text-brand-text">0</span>
+              <button onclick="updateQty('adic-2', 1)" class="w-6 h-6 rounded-md bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARRA FLOTANTE DEL CARRITO (Integrada en #A01F0B) -->
+  <div id="cartBar" class="fixed bottom-0 inset-x-0 bg-[#A01F0B]/95 backdrop-blur-md border-2 border-brand-main/20 p-3 shadow-2xl z-40">
+    <div class="max-w-md mx-auto flex items-center justify-between">
+      <div>
+        <p class="text-[10px] uppercase font-bold text-amber-200 tracking-wider">Total Estimado</p>
+        <p id="totalPrice" class="text-xl font-extrabold text-white">$0.00</p>
+        <p class="text-[12px] text-amber-200/70 italic leading-none mt-0.5">*No incluye delivery.</p>
+      </div>
+      <button onclick="openCartModal()" class="bg-brand-accent hover:bg-red-800 text-white font-bold py-2.5 px-5 rounded-xl shadow-md cta-glow flex items-center space-x-2 text-xs transition-all">
+        <span aria-hidden="true">🛒</span>
+        <span>Ver Mi Pedido</span>
+        <span id="cartCount" class="bg-white text-brand-accent text-[10px] px-1.5 py-0.5 rounded-full font-black">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: RESUMEN DEL PEDIDO -->
+  <div id="cartModal" class="fixed inset-0 bg-black/60 hidden items-end sm:items-center justify-center p-0 sm:p-4 z-50 backdrop-blur-sm">
+    <div class="bg-brand-bg w-full max-w-md rounded-t-2xl sm:rounded-2xl border border-brand-border p-5 shadow-2xl max-h-[85vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <h3 class="font-extrabold text-base text-brand-text flex items-center gap-2">
+          <span aria-hidden="true">🧾</span> Resumen de tu Pedido
+        </h3>
+        <button onclick="closeCartModal()" class="text-gray-400 hover:text-brand-text font-bold text-lg">&times;</button>
+      </div>
+
+      <!-- Detalle de Ítems (Producto, Controles -/+, Precio) -->
+      <div id="cartItemsList" class="py-3 space-y-2 overflow-y-auto flex-1 max-h-48 text-xs border-b border-brand-border">
+        <!-- Generado dinámicamente -->
+      </div>
+
+      <!-- Formulario Cliente -->
+      <div class="pt-3 space-y-2.5 text-xs">
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Tu Nombre:</label>
+          <input type="text" id="clientName" placeholder="Ej. María Pérez" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+        </div>
+
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Modalidad de Entrega:</label>
+          <select id="deliveryType" class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main font-medium">
+            <option value="Delivery">🛵 Delivery</option>
+            <option value="Pick-up">🏃 Retiro en Local</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-brand-text mb-1">Observaciones:</label>
+          <input type="text" id="clientNotes" placeholder="Ej. Sin cebolla, adicional de..." class="w-full bg-white border border-brand-border rounded-lg p-2 text-brand-text focus:outline-none focus:border-brand-main">
+        </div>
+      </div>
+
+      <div class="pt-4 mt-2 border-t border-brand-border flex items-center justify-between">
+        <div>
+          <p class="text-[10px] text-brand-text font-bold uppercase">Total estimado</p>
+          <p id="modalTotalPrice" class="text-lg font-extrabold text-brand-accent">$0.00</p>
+          <p class="text-[12px] text-brand-text-200/70 italic leading-none mt-0.5">*No incluye delivery.</p>
+        </div>
+        <button onclick="sendOrderToWhatsApp()" class="bg-[#25D366] hover:bg-[#1eb354] text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center gap-2 transition-all shadow-md">
+          <svg class="icon-wa" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.001 3C9.38 3 4 8.38 4 15.001c0 2.386.679 4.66 1.958 6.634L4 29l7.53-1.928a11.94 11.94 0 0 0 4.47.86h.005C22.62 27.932 28 22.552 28 15.93 28 9.31 22.62 3.93 16.001 3zm6.72 17.02c-.283.795-1.63 1.516-2.246 1.596-.573.075-1.28.107-2.066-.13-.476-.144-1.09-.34-1.874-.665-3.303-1.427-5.457-4.744-5.62-4.966-.164-.222-1.34-1.783-1.34-3.402 0-1.62.85-2.417 1.15-2.75.3-.334.657-.417.876-.417.219 0 .438.002.629.011.202.01.474-.077.74.564.283.681.965 2.352 1.05 2.523.083.17.138.37.028.593-.11.222-.165.36-.328.554-.164.194-.345.433-.492.582-.164.166-.334.346-.144.68.191.334.848 1.4 1.82 2.267 1.25 1.115 2.303 1.46 2.638 1.624.334.164.53.138.727-.083.196-.222.845-.986 1.07-1.324.222-.339.446-.283.75-.17.303.111 1.926.909 2.257 1.074.33.166.55.249.628.389.083.14.083.79-.2 1.585z"/>
+          </svg>
+          <span>Enviar Pedido por WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT DE LÓGICA COMPLETA -->
+  <script>
+    let cart = {};
+
+    function getModLabel(mod) {
+      const labels = {
+        cebolla: 'sin cebolla', papas: 'sin papas', tomate: 'sin tomate',
+        salsaroja: 'sin salsas rojas', salsacaolis: "sin salsa Caoli's",
+        lechuga: 'sin lechuga', mayo: 'sin mayonesa', solopapas: 'solo papas'
+      };
+      return labels[mod] || mod;
+    }
+
+    function ensureCartItem(id) {
+      if (!cart[id]) cart[id] = { qty: 0, mods: [], protein: null };
+      return cart[id];
+    }
+
+    function updateQty(id, change) {
+      const item = ensureCartItem(id);
+      item.qty += change;
+
+      const qtyElement = document.getElementById(`qty-${id}`);
+      if (item.qty <= 0) {
+        delete cart[id];
+        if (qtyElement) qtyElement.innerText = 0;
+      } else if (qtyElement) {
+        qtyElement.innerText = item.qty;
+      }
+
+      calculateTotal();
+    }
+
+    function updateQtyModal(id, change) {
+      updateQty(id, change);
+      renderCartModal();
+    }
+
+    function calculateTotal() {
+      let total = 0, count = 0;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (btn) {
+          const id = btn.id.replace('qty-', '');
+          const qty = cart[id]?.qty || 0;
+          const price = parseFloat(card.getAttribute('data-price')) || 0;
+          total += qty * price;
+          count += qty;
+        }
+      });
+      document.getElementById('totalPrice').innerText = `$${total.toFixed(2)}`;
+      document.getElementById('modalTotalPrice').innerText = `$${total.toFixed(2)}`;
+      document.getElementById('cartCount').innerText = count;
+    }
+
+    // Delegación de eventos: un solo listener para TODOS los acordeones,
+    // checkboxes de modificadores y botones de proteína del menú entero.
+    document.addEventListener('click', (e) => {
+      const toggleBtn = e.target.closest('[data-mod-toggle]');
+      if (toggleBtn) {
+        const id = toggleBtn.getAttribute('data-mod-toggle');
+        const panel = document.getElementById(`mods-${id}`);
+        panel.classList.toggle('hidden');
+        toggleBtn.classList.toggle('is-open');
+        return;
+      }
+
+      const proteinBtn = e.target.closest('.protein-btn');
+      if (proteinBtn) {
+        const id = proteinBtn.getAttribute('data-product');
+        const protein = proteinBtn.getAttribute('data-protein');
+        const item = ensureCartItem(id);
+        item.protein = (item.protein === protein) ? null : protein;
+
+        document.querySelectorAll(`.protein-btn[data-product="${id}"]`).forEach(b => {
+          b.classList.toggle('is-active', b.getAttribute('data-protein') === item.protein);
+        });
+        return;
+      }
+    });
+
+    document.addEventListener('change', (e) => {
+      if (e.target.matches('input[type="checkbox"][data-mod]')) {
+        const id = e.target.getAttribute('data-product');
+        const mod = e.target.getAttribute('data-mod');
+        const item = ensureCartItem(id);
+
+        if (e.target.checked) {
+          if (!item.mods.includes(mod)) item.mods.push(mod);
+        } else {
+          item.mods = item.mods.filter(m => m !== mod);
+        }
+        e.target.closest('.mod-chip').classList.toggle('is-active', e.target.checked);
+      }
+    });
+
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.getAttribute('data-name').toLowerCase();
+        card.style.display = name.includes(query) ? 'block' : 'none';
+      });
+    }
+
+    function scrollToCategory(id, btn) {
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.remove('bg-brand-main', 'text-white');
+        b.classList.add('bg-white', 'text-brand-text');
+      });
+      btn.classList.remove('bg-white', 'text-brand-text');
+      btn.classList.add('bg-brand-main', 'text-white');
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderCartModal() {
+      const listContainer = document.getElementById('cartItemsList');
+      listContainer.innerHTML = '';
+      let hasItems = false;
+
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (!btn) return;
+        const id = btn.id.replace('qty-', '');
+        const item = cart[id];
+        if (!item || item.qty <= 0) return;
+
+        hasItems = true;
+        const title = card.getAttribute('data-title');
+        const price = parseFloat(card.getAttribute('data-price'));
+        const subtotal = item.qty * price;
+
+        let modText = '';
+        const modParts = item.mods.map(getModLabel);
+        if (item.protein) modParts.push(`proteína: ${item.protein}`);
+        if (modParts.length) modText = `<p class="text-[10px] text-brand-main italic mt-0.5">${modParts.join(', ')}</p>`;
+
+        const itemRow = document.createElement('div');
+        itemRow.className = "py-2 border-b border-brand-border/40 font-medium text-xs";
+        itemRow.innerHTML = `
+          <div class="flex justify-between items-center">
+            <span class="flex-1 pr-2 font-semibold text-brand-text truncate">${title}</span>
+            <div class="flex items-center bg-white rounded-lg p-1 border border-brand-border space-x-2 mr-3 flex-shrink-0 shadow-sm">
+              <button onclick="updateQtyModal('${id}', -1)" class="w-5 h-5 rounded bg-gray-100 hover:bg-gray-200 text-brand-text flex items-center justify-center font-bold text-xs">-</button>
+              <span class="text-xs font-bold w-4 text-center text-brand-text">${item.qty}</span>
+              <button onclick="updateQtyModal('${id}', 1)" class="w-5 h-5 rounded bg-brand-main text-white flex items-center justify-center font-bold text-xs">+</button>
+            </div>
+            <span class="font-bold text-brand-accent text-right w-12 flex-shrink-0">$${subtotal.toFixed(2)}</span>
+          </div>
+          ${modText}
+        `;
+        listContainer.appendChild(itemRow);
+      });
+
+      if (!hasItems) {
+        listContainer.innerHTML = '<p class="text-center text-gray-500 py-4 text-xs font-medium">Tu pedido está vacío</p>';
+      }
+    }
+
+    function openCartModal() {
+      if (Object.keys(cart).length === 0) {
+        alert("Por favor agrega al menos un producto a tu pedido.");
+        return;
+      }
+      renderCartModal();
+      document.getElementById('cartModal').classList.remove('hidden');
+      document.getElementById('cartModal').classList.add('flex');
+    }
+
+    function closeCartModal() {
+      document.getElementById('cartModal').classList.add('hidden');
+      document.getElementById('cartModal').classList.remove('flex');
+    }
+
+    function sendOrderToWhatsApp() {
+      if (Object.keys(cart).length === 0) {
+        alert("Por favor agrega al menos un producto a tu pedido.");
+        return;
+      }
+
+      const name = document.getElementById('clientName').value.trim() || 'Cliente';
+      const type = document.getElementById('deliveryType').value;
+      const notes = document.getElementById('clientNotes').value.trim() || 'Sin observaciones';
+
+      let msg = `*NUEVO PEDIDO - CAOLI'S BUR'S*\n`;
+      msg += `----------------------------------\n`;
+      msg += `👤 *Cliente:* ${name}\n`;
+      msg += `🛵 *Modalidad:* ${type}\n\n`;
+      msg += `📋 *Detalle:* \n`;
+
+      let total = 0;
+      document.querySelectorAll('.product-card').forEach(card => {
+        const btn = card.querySelector('[id^="qty-"]');
+        if (!btn) return;
+        const id = btn.id.replace('qty-', '');
+        const item = cart[id];
+        if (!item || item.qty <= 0) return;
+
+        const title = card.getAttribute('data-title');
+        const price = parseFloat(card.getAttribute('data-price'));
+        const subtotal = item.qty * price;
+        total += subtotal;
+
+        let modText = '';
+        const modParts = item.mods.map(getModLabel);
+        if (item.protein) modParts.push(`proteína: ${item.protein}`);
+        if (modParts.length) modText = ` (${modParts.join(', ')})`;
+
+        msg += `• ${item.qty}x ${title}${modText} ($${subtotal.toFixed(2)})\n`;
+      });
+
+      msg += `\n💵 *Total estimado:* $${total.toFixed(2)}\n`;
+      msg += `📝 *Observaciones/Dirección:* ${notes}\n`;
+      msg += `----------------------------------`;
+
+      const phoneNumber = "584128995687"; // Reemplazar con el número oficial de Caoli's Bur's
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+
+      window.open(whatsappUrl, '_blank');
+      closeCartModal();
+    }
+  </script>
+</body>
+</html>
